@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May 1 14:04:04 2020
-@author: Jesse Haviland
-"""
-
 import numpy.testing as nt
 import roboticstoolbox as rtb
 import numpy as np
@@ -28,8 +21,6 @@ class TestETS2(unittest.TestCase):
 
     def test_args(self):
         deg = np.pi / 180
-        mm = 1e-3
-        tool_offset = (103) * mm
 
         l0 = rtb.ET2.tx(0.333) * rtb.ET2.R(jindex=0)
 
@@ -55,7 +46,6 @@ class TestETS2(unittest.TestCase):
         r5 = rtb.ETS2(
             [l0, l1, l2, l3, l3, l4, rtb.ET2.R(90 * deg), rtb.ET2.R(jindex=5)]
         )
-        r6 = rtb.ETS2([r1])
         r7 = rtb.ETS2(rtb.ET2.R(1.0))
 
         self.assertEqual(r1, r2)
@@ -137,7 +127,6 @@ class TestETS2(unittest.TestCase):
     def test_n(self):
         rx = rtb.ET2.R(1.543)
         ry = rtb.ET2.R(1.543)
-        rz = rtb.ET2.R(1.543)
         a = rtb.ET2.R()
         b = rtb.ET2.R()
 
@@ -262,7 +251,6 @@ class TestETS2(unittest.TestCase):
         nt.assert_almost_equal(r_inv.fkine(q), ans1.inv().A)
 
     def test_jointset(self):
-        q = [1.0, 2.0, 3.0]
         a = rtb.ET2.R(jindex=0)
         b = rtb.ET2.R(jindex=1)
         c = rtb.ET2.R(jindex=2)
@@ -450,7 +438,6 @@ class TestETS2(unittest.TestCase):
         r.plot(q=q2, block=False)
 
     def test_teach(self):
-        x = sympy.Symbol("x")
         q2 = np.array([0, 1, 2])
         rz = rtb.ETS2(rtb.ET2.R(jindex=0))
         tx = rtb.ETS2(rtb.ET2.tx(jindex=1, qlim=[-1, 1]))

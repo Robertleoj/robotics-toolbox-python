@@ -18,7 +18,6 @@ from spatialmath.base import getvector, verifymatrix, isscalar, getmatrix
 from scipy import integrate, interpolate
 from roboticstoolbox import rtb_get_param
 from roboticstoolbox.robot.RobotProto import RobotProto
-
 from roboticstoolbox.tools.types import ArrayLike, NDArray
 import roboticstoolbox as rtb
 
@@ -1536,14 +1535,10 @@ class DynamicsMixin:
         verifymatrix(tauR, (self.n, 2))
 
         wmax = np.zeros((trajn, 6))
-        joint = np.zeros(trajn, dtype=np.int)
+        joint = np.zeros(trajn, dtype=np.int64)
 
         for i in range(trajn):
             tauB = self.gravload(q[i, :])
-
-            # tauP = self.rne(
-            #     np.zeros(self.n), np.zeros(self.n),
-            #     q, grav=[0, 0, 0], fext=w/np.linalg.norm(w))
 
             tauP = self.pay(w[i, :] / np.linalg.norm(w[i, :]), q=q[i, :], frame=frame)
 

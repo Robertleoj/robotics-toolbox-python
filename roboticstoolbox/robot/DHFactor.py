@@ -4,8 +4,8 @@ import sympy
 import numpy as np
 from spatialmath import base
 
-pi2 = base.pi() / 2
-deg = base.pi() / sympy.Integer("180")
+pi2 = base.symbolic.pi() / 2
+deg = base.symbolic.pi() / sympy.Integer("180")
 
 
 # PROGRESS
@@ -26,7 +26,6 @@ class DHFactor(ET):
         for axis, eta in et_re.findall(s):
             if eta[0] == "q":
                 eta = None
-                unit = None
                 j = jointnum
                 jointnum += 1
             else:
@@ -34,7 +33,7 @@ class DHFactor(ET):
                 try:
                     # first attempt to create symbolic number
                     eta = sympy.Number(eta)
-                except:
+                except Exception:
                     # failing that, a symbolic variable
                     eta = sympy.symbols(eta)
                 if axis[0] == "R":
@@ -129,10 +128,6 @@ class DHFactor(ET):
     # ---------------------------------------------------------------------- #
     def swap(self, mdh=False):
         #  we want to sort terms into the order:
-        # 	RZ
-        # 	TX
-        # 	TZ
-        # 	RX
 
         def do_swap(this, next):
             if mdh:

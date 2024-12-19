@@ -269,9 +269,6 @@ class TestTrajectory(unittest.TestCase):
             )
         )
 
-        # with a time vector
-        t = np.linspace(0, 2, 11)
-
         tg = tr.mtraj(tr.quintic, q1, q2, 11)
         q = tg.s
         qd = tg.sd
@@ -375,8 +372,6 @@ class TestTrajectory(unittest.TestCase):
         self.assertAlmostEqual(qdd.shape, (11, 6))
 
         # with a time vector
-        t = np.linspace(0, 2, 11)
-
         tg = tr.mtraj(tr.trapezoidal, q1, q2, 11)
         q = tg.s
         qd = tg.sd

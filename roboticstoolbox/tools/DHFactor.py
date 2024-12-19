@@ -1,6 +1,3 @@
-"""
-@author Samuel Drew
-"""
 
 
 class Element:  # pragma nocover
@@ -208,7 +205,7 @@ class Element:  # pragma nocover
         return match
 
     def merge(self, e):
-        assert type(e) == Element, "merge(Element e)"
+        assert isinstance(e, Element), "merge(Element e)"
         """
         don't merge if dissimilar transform or
         both are joint variables
@@ -230,7 +227,7 @@ class Element:  # pragma nocover
             return sum
 
     def swap(self, next, dhWhich):
-        assert type(next) == Element, "type(next) == Element"
+        assert isinstance(next, Element), "type(next) == Element"
 
         # don't swap if both are joint variables
         if self.isjoint() and next.isjoint():

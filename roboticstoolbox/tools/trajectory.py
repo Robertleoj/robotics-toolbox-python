@@ -2,12 +2,14 @@ import numpy as np
 import math
 import warnings
 from collections import namedtuple
+from spatialmath import SO2
 import matplotlib.pyplot as plt
 from spatialmath.base.argcheck import (
     isvector,
     getvector,
     isscalar,
 )
+import roboticstoolbox as rtb
 
 
 class Trajectory:
@@ -260,7 +262,7 @@ class Trajectory:
 
         :seealso: :func:`qplot`
         """
-        xplot(self.t, self.q, **kwargs)
+        rtb.xplot(self.t, self.q, **kwargs)
 
 
 # -------------------------------------------------------------------------- #
@@ -1124,26 +1126,7 @@ def mstraj(
 
 
 if __name__ == "__main__":
-    # t = quintic(0, 1, 50)
-    # t.plot()
-
-    # t = quintic(0, 1, np.linspace(0, 1, 50))
-    # t.plot()
-
-    # t = trapezoidal(0, 1, 50)
-    # t.plot()
-    # t = trapezoidal(0, 1, np.linspace(0, 1, 50))
-    # t.plot(block=True)
-
-    from roboticstoolbox import *
-    from spatialmath import SO2
-
-    # puma = models.DH.Puma560()
-
-    # traj = jtraj(puma.qz, puma.qr, 100)
-    # traj.plot(block=True)
-
     via = SO2(30, unit="deg") * np.array([[-1, 1, 1, -1, -1], [1, 1, -1, -1, 1]])
     traj0 = mstraj(via.T, dt=0.2, tacc=0.5, qdmax=[2, 1])
-    xplot(traj0.q[:, 0], traj0.q[:, 1], color="red")
+    rtb.xplot(traj0.q[:, 0], traj0.q[:, 1], color="red")
     traj0.plot(block=True)

@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-"""
-@author: Jesse Haviland
-"""
-
 import numpy.testing as nt
 import numpy as np
 import roboticstoolbox as rp
@@ -60,8 +55,6 @@ class TestDHRobot(unittest.TestCase):
         l3 = rp.RevoluteDH()
 
         r0 = rp.DHRobot([l0, l1, l2, l3])
-
-        ans = [False, True, False, True]
 
         self.assertEqual(r0.isrevolute(0), False)
         self.assertEqual(r0.isrevolute(1), True)
@@ -1172,8 +1165,6 @@ class TestDHRobot(unittest.TestCase):
     def test_gravload(self):
         puma = rp.models.DH.Puma560()
         q = puma.qn
-
-        grav = [0, 0, 9.81]
 
         taur = [-0.0000, 31.6399, 6.0351, 0.0000, 0.0283, 0]
 

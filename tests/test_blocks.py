@@ -1,21 +1,12 @@
-#!/usr/bin/env python3
-
 import unittest
-
-try:
-    from bdsim import BDSim
-except ModuleNotFoundError:
-    raise unittest.SkipTest(
-        "bdsim not found, skipping all tests in test_blocks.py"
-    ) from None
-
+import numpy as np
 from spatialmath import SE3
 from spatialmath.base import tr2x
 
 import numpy.testing as nt
 
 import roboticstoolbox as rtb
-from roboticstoolbox.blocks import *
+from roboticstoolbox.blocks import FKine, IKine, Jacobian, Gravload, Gravload_X, Inertia, Inertia_X, IDyn, FDyn, FDyn_X, MultiRotor, MultiRotorPlot, MultiRotorMixer, VehiclePlot, Bicycle, DiffSteer, Unicycle, Traj, CirclePath, Trapezoidal, CTraj, JTraj, Point2Tr, TR2T, Delta2Tr, Tr2Delta, ArmPlot
 from roboticstoolbox.blocks.quad_model import quadrotor
 
 
@@ -44,7 +35,7 @@ class RobotBlockTest(unittest.TestCase):
         robot = rtb.models.ETS.Panda()
         q = robot.configs["qr"]
         T = robot.fkine(q)
-        sol = robot.ikine_LM(T)
+        robot.ikine_LM(T)
 
         block = IKine(robot, seed=0)
 
@@ -148,9 +139,8 @@ class RobotBlockTest(unittest.TestCase):
     @unittest.skip("cant test bdsim plot blocks")
     def test_armplot(self):
         robot = rtb.models.ETS.Panda()
-        q = robot.configs["qr"]
-
-        block = ArmPlot(robot)
+        robot.configs["qr"]
+        ArmPlot(robot)
 
 
 class SpatialBlockTest(unittest.TestCase):
@@ -298,7 +288,6 @@ class MobileBlockTest(unittest.TestCase):
 
     @unittest.skip("cant test bdsim plot blocks")
     def test_vehicleplot(self):
-        bike = Bicycle()
         block = VehiclePlot()
 
         s = State()
@@ -388,11 +377,7 @@ class MultirotorBlockTest(unittest.TestCase):
         block = MultiRotor(quadrotor)
         u = [100 * np.r_[1, -1, 1, -1]]
         x = block.getstate0()
-        out = block.T_output(u, x=x)[0]
-
-        # block = MultiRotorPlot(quadrotor)
-        # s = block.T_start()
-        # block.T_step(out, s)
+        block.T_output(u, x=x)[0]
 
 
 # ---------------------------------------------------------------------------------------#

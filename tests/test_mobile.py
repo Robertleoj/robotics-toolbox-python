@@ -6,14 +6,14 @@ Created on 28 December 2020
 import numpy.testing as nt
 import roboticstoolbox as rtb
 import numpy as np
+import matplotlib.pyplot as plt
 import unittest
 
-# from roboticstoolbox import Bug2, DistanceTransformPlanner, rtb_loadmat
 from roboticstoolbox.mobile.Bug2 import edgelist
-from roboticstoolbox.mobile.landmarkmap import *
-from roboticstoolbox.mobile.drivers import *
-from roboticstoolbox.mobile.sensors import *
-from roboticstoolbox.mobile.Vehicle import *
+from roboticstoolbox.mobile.landmarkmap import LandmarkMap
+from roboticstoolbox.mobile.drivers import base
+from roboticstoolbox.mobile.sensors import RangeBearingSensor
+from roboticstoolbox.mobile.Vehicle import Unicycle, Bicycle
 
 # from roboticstoolbox.mobile import Planner
 
@@ -48,26 +48,6 @@ class TestNavigation(unittest.TestCase):
             edge, _ = edgelist(im, seed, -1)
             for e in edge:
                 self.assertEqual(im[e[1], e[0]], im[seed[1], seed[0]])
-
-    # def test_map(self):
-    #     map = np.zeros((10, 10))
-    #     map[2, 3] = 1
-
-    #     # instantiate a noname planner
-    #     nav = Planner(occgrid=map, ndims=2)
-
-    #     ## test isoccupied method
-    #     self.assertTrue(nav.isoccupied([3, 2]))
-    #     self.assertFalse(nav.isoccupied([3, 3]))
-
-    #     # out of bounds
-    #     self.assertTrue(nav.isoccupied([20, 20]))
-
-    #     ## test inflation option
-    #     nav = Bug2(occgrid=map, inflate=1)
-    #     self.assertTrue(nav.isoccupied([3, 2]))
-    #     self.assertTrue(nav.isoccupied([3, 3]))
-    #     self.assertFalse(nav.isoccupied([3, 4]))
 
 
 # ======================================================================== #
@@ -146,16 +126,8 @@ class RangeBearingSensorTest(unittest.TestCase):
         for i in range(3):
             nt.assert_almost_equal(z[i, :], self.rs.h(xv[i, :], 10))
 
-        # xv = np.r_[2, 3, 0.5]
-        # p = np.array([[1, 2], [3, 4], [5, 6]]).T
-        # z = self.rs.h(xv, p)
-        # self.assertIsInstance(z, np.ndarray)
-        # self.assertEqual(z.shape, (3,2))
-        # for i in range(3):
-        #     nt.assert_almost_equal(z[i,:], self.rs.h(xv, p[i,:]))
-
     def test_H_jacobians(self):
-        xv = np.r_[1, 2, pi / 4]
+        xv = np.r_[1, 2, np.pi / 4]
         p = np.r_[5, 7]
         id = 10
 
@@ -167,7 +139,7 @@ class RangeBearingSensorTest(unittest.TestCase):
             self.rs.Hp(xv, p), base.numjac(lambda p: self.rs.h(xv, p), p), decimal=4
         )
 
-        xv = [1, 2, pi / 4]
+        xv = [1, 2, np.pi / 4]
         p = [5, 7]
         id = 10
 
@@ -180,14 +152,14 @@ class RangeBearingSensorTest(unittest.TestCase):
         )
 
     def test_g(self):
-        xv = np.r_[1, 2, pi / 4]
+        xv = np.r_[1, 2, np.pi / 4]
         p = np.r_[5, 7]
 
         z = self.rs.h(xv, p)
         nt.assert_almost_equal(p, self.rs.g(xv, z))
 
     def test_G_jacobians(self):
-        xv = np.r_[1, 2, pi / 4]
+        xv = np.r_[1, 2, np.pi / 4]
         p = np.r_[5, 7]
 
         z = self.rs.h(xv, p)
@@ -260,19 +232,8 @@ class DriversTest(unittest.TestCase):
 
 
 class TestBicycle(unittest.TestCase):
-    # def test_deriv(self):
-    #     xv = np.r_[1, 2, pi/4]
-
-    #     veh = Bicycle()
-
-    #     u = [1, 0.2]
-    #     nt.assert_almost_equal(
-    #         veh.deriv(xv, ),
-    #         base.numjac(lambda p: veh(xv, p), p),
-    #         decimal=4)
-
     def test_jacobians(self):
-        xv = np.r_[1, 2, pi / 4]
+        xv = np.r_[1, 2, np.pi / 4]
         odo = np.r_[0.1, 0.2]
         veh = Bicycle()
 
@@ -321,248 +282,5 @@ class TestUnicycle(unittest.TestCase):
         nt.assert_almost_equal(uni.deriv(state, input), np.r_[1, 0, 1])
 
 
-# function setupOnce(testCase)
-#     testCase.TestData.Duration = 50;
-# end
-
-# function Vehicle_test(tc)
-#     %%
-#     randinit
-#     V = diag([0.005, 0.5*pi/180].^2);
-
-#     v = Bicycle('covar', V);
-#     v.add_driver( RandomPath(10) );
-
-#     v.run(tc.TestData.Duration);
-#     v.plot_xy();
-#     s = v.char();
-
-#     J = v.Fx(v.x, [.1 .2]);
-#     J = v.Fv(v.x, [.1 .2]);
-# end
-
-# function DeadReckoning_test(tc)
-#     %%
-#     randinit
-#     V = diag([0.005, 0.5*pi/180].^2);
-#     P0 = diag([0.005, 0.005, 0.001].^2);
-
-#     v = Bicycle('covar', V);
-#     v.add_driver( RandomPath(10) );
-#     s = char(v);
-
-#     ekf = EKF(v, V, P0);
-#     ekf.run(tc.TestData.Duration);
-
-#     clf
-#     ekf.plot_xy
-#     hold on
-#     v.plot_xy('r')
-#     grid on
-#     xyzlabel
-
-#     ekf.plot_ellipse('g')
-#     ekf.plot_P()
-# end
-
-# function MapLocalization_test(tc)
-#     %%
-#     randinit
-#     W = diag([0.1, 1*pi/180].^2);
-#     P0 = diag([0.005, 0.005, 0.001].^2);
-#     V = diag([0.005, 0.5*pi/180].^2);
-
-#     map = LandmarkMap(20);
-#     map = LandmarkMap(20, 'verbose');
-#     map = LandmarkMap(20, 10, 'verbose');
-#     map = LandmarkMap(20, 10);
-#     s = char(map);
-
-#     veh = Bicycle('covar', V);
-#     veh.add_driver( RandomPath(10) );
-#     sensor = RangeBearingSensor(veh, map, 'covar', W);
-#     sensor.interval = 5;
-#     ekf = EKF(veh, W, P0, sensor, W, map);
-
-#     ekf.run(tc.TestData.Duration);
-
-#     clf
-#     map.plot()
-#     veh.plot_xy('b');
-#     ekf.plot_xy('r');
-#     ekf.plot_ellipse('k')
-#     grid on
-#     xyzlabel
-
-#     clf
-#     ekf.plot_P()
-# end
-
-# function Mapping_test(tc)
-#     %%
-#     randinit
-#     W = diag([0.1, 1*pi/180].^2);
-#     V = diag([0.005, 0.5*pi/180].^2);
-
-#     map = LandmarkMap(20, 10);
-
-#     veh = Bicycle('covar', V);
-#     veh.add_driver( RandomPath(10) );
-
-#     sensor = RangeBearingSensor(veh, map, 'covar', W);
-#     sensor.interval = 5;
-
-#     ekf = EKF(veh, [], [], sensor, W, []);
-#     ekf.run(tc.TestData.Duration);
-
-
-#     clf
-#     map.plot()
-#     veh.plot_xy('b');
-#     ekf.plot_map('g');
-#     grid on
-#     xyzlabel
-
-#     %%
-#     verifyEqual(tc, numcols(ekf.landmarks), 20);
-
-# end
-
-# function SLAM_test(tc)
-#     %%
-#     randinit
-#     W = diag([0.1, 1*pi/180].^2);
-#     P0 = diag([0.005, 0.005, 0.001].^2);
-#     V = diag([0.005, 0.5*pi/180].^2);
-
-#     map = LandmarkMap(20, 10);
-
-#     veh = Bicycle(V);
-#     veh.add_driver( RandomPath(10) );
-
-#     sensor = RangeBearingSensor(veh, map, 'covar', W);
-#     sensor.interval = 1;
-
-#     ekf = EKF(veh, V, P0, sensor, W, []);
-#     ekf
-#     ekf.verbose = false;
-#     ekf.run(tc.TestData.Duration);
-
-
-#     clf
-#     map.plot()
-#     veh.plot_xy('b');
-#     ekf.plot_xy('r');
-#     ekf.plot_ellipse('k')
-#     grid on
-#     xyzlabel
-
-#     clf
-#     ekf.plot_P()
-
-#     clf
-#     map.plot();
-#     ekf.plot_map('g');
-
-#     %%
-#     verifyEqual(tc, numcols(ekf.landmarks), 20);
-
-# end
-
-# function ParticleFilter_test(tc)
-#     %%
-#     randinit
-#     map = LandmarkMap(20);
-
-#     W = diag([0.1, 1*pi/180].^2);
-#     v = Bicycle('covar', W);
-#     v.add_driver( RandomPath(10) );
-#     V = diag([0.005, 0.5*pi/180].^2);
-#     sensor = RangeBearingSensor(v, map, 'covar', V);
-
-#     Q = diag([0.1, 0.1, 1*pi/180]).^2;
-#     L = diag([0.1 0.1]);
-#     pf = ParticleFilter(v, sensor, Q, L, 1000);
-#     pf
-#     pf.run(tc.TestData.Duration);
-
-#     plot(pf.std)
-#     xlabel('time step')
-#     ylabel('standard deviation')
-#     legend('x', 'y', '\theta')
-#     grid
-
-#     clf
-#     pf.plot_pdf();
-#     clf
-#     pf.plot_xy();
-# end
-
-# function posegraph_test(tc)
-#     pg = PoseGraph('pg1.g2o')
-#     self.assertClass(pg, 'PoseGraph');
-#     self.assertEqual(pg.graph.n, 4);
-
-#     clf
-#     pg.plot()
-#     pg.optimize('animate')
-#     close all
-
-#     pg = PoseGraph('killian-small.toro')
-#     self.assertClass(pg, 'PoseGraph');
-#     self.assertEqual(pg.graph.n, 1941);
-
-#     pg = PoseGraph('killian.g2o', 'laser')
-#     self.assertClass(pg, 'PoseGraph');
-#     self.assertEqual(pg.graph.n, 3873);
-
-#     [r,theta] = pg.scan(1);
-#     self.assertClass(r, 'double');
-#     self.assertLength(r, 180);
-#     self.assertClass(theta, 'double');
-#     self.assertLength(theta, 180);
-
-#     [x,y] = pg.scan(1);
-#     self.assertClass(x, 'double');
-#     self.assertLength(x, 180);
-#     self.assertClass(y, 'double');
-#     self.assertLength(y, 180);
-
-#     pose = pg.pose(1);
-#     self.assertClass(pose, 'double');
-#     self.assertSize(pose, [3 1]);
-
-#     t = pg.time(1);
-#     self.assertClass(t, 'double');
-#     self.assertSize(t, [1 1]);
-
-#     w = pg.scanmap('ngrid', 3000);
-#     self.assertClass(w, 'int32');
-#     self.assertSize(w, [3000 3000]);
-
-#     tc.assumeTrue(exist('idisp', 'file'));  %REMINDER
-#     clf
-#     pg.plot_occgrid(w);
-#     close all
-
-# end
-
-# function makemap_test(tc)
-#         tc.assumeTrue(false);  %REMINDER
-
-# end
-
-# function chi2inv_test(tc)
-#     self.assertEqual( chi2inv_rtb(0,2), 0);
-#     self.assertEqual( chi2inv_rtb(1,2), Inf);
-#     self.assertEqual( chi2inv_rtb(3,2), NaN);
-
-#     self.assertError( @() chi2inv_rtb(1,1), 'RTB:chi2inv_rtb:badarg');
-
-# end
-#
-
-
-if __name__ == "__main__":  # pragma nocover
+if __name__ == "__main__":
     unittest.main()
-    # pytest.main(['tests/test_SerialLink.py'])

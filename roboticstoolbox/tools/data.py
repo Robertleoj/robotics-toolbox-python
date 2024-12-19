@@ -1,5 +1,8 @@
 from pathlib import Path
 import importlib
+from scipy.io import loadmat
+from scipy.io.matlab.mio5_params import mat_struct
+
 
 
 def rtb_load_matfile(filename):
@@ -25,9 +28,6 @@ def rtb_load_matfile(filename):
 
     :seealso: :func:`path_to_datafile`
     """
-    from scipy.io import loadmat
-    from scipy.io.matlab.mio5_params import mat_struct
-
     # get results as a dict
     data = rtb_load_data(filename, loadmat, squeeze_me=True, struct_as_record=False)
 
@@ -157,7 +157,7 @@ def rtb_path_to_datafile(*filename, local=True):
 
 if __name__ == "__main__":
     house = rtb_load_matfile("data/house.mat")
-    a = rtb_loadmat("map1.mat")
+    a = rtb_load_matfile("map1.mat")
     print(a)
-    a = rtb_loadmat("data/map1.mat")
+    a = rtb_load_matfile("data/map1.mat")
     print(a)

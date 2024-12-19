@@ -2,7 +2,7 @@ from math import pi
 import numpy as np
 import unittest
 
-from roboticstoolbox.mobile import *
+from roboticstoolbox.mobile import BinaryOccupancyGrid, DubinsPlanner, ReedsSheppPlanner
 
 
 class TestPlanners(unittest.TestCase):
