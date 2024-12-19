@@ -1,4 +1,4 @@
-from roboticstoolbox import ETS, ET
+from roboticstoolbox import ET
 import re
 import sympy
 import numpy as np
@@ -7,11 +7,11 @@ from spatialmath import base
 pi2 = base.pi() / 2
 deg = base.pi() / sympy.Integer("180")
 
+
 # PROGRESS
 # subs2z does a bad thing in first phase, 2 subs it shouldnt make
 class DHFactor(ET):
     def __init__(self, axis=None, eta=None, **kwargs):
-
         super().__init__(axis=axis, eta=eta, **kwargs)
 
     @classmethod
@@ -63,7 +63,6 @@ class DHFactor(ET):
     # ---------------------------------------------------------------------- #
 
     def simplify(self, mdh=False):
-
         self.merge()
         self.swap(mdh)
         self.merge()
@@ -104,7 +103,6 @@ class DHFactor(ET):
         nchanges = 0
 
         for i in range(len(self)):
-
             this = self[i]
             if this.isjoint or this.isrevolute:
                 continue
@@ -130,7 +128,6 @@ class DHFactor(ET):
 
     # ---------------------------------------------------------------------- #
     def swap(self, mdh=False):
-
         #  we want to sort terms into the order:
         # 	RZ
         # 	TX
@@ -339,7 +336,6 @@ class DHFactor(ET):
     # ---------------------------------------------------------------------- #
 
     def eliminate_y(self):
-
         nchanges = 0
         out = DHFactor()
         jointyet = False
@@ -457,7 +453,6 @@ class DHFactor(ET):
         # For each ET in the object, display it, data comes from properties
         # which come from the named tuple
         for et in self:
-
             s = f"{et.axis}("
             if et.isjoint:
                 if q is not None:

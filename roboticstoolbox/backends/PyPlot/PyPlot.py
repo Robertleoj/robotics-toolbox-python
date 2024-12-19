@@ -2,6 +2,7 @@
 """
 @author Jesse Haviland
 """
+
 import time
 import roboticstoolbox as rp
 import numpy as np
@@ -65,7 +66,6 @@ class PyPlot(Connector):
     """
 
     def __init__(self):
-
         super(PyPlot, self).__init__()
         self.robots = []
         self.ellipses = []
@@ -469,7 +469,6 @@ class PyPlot(Connector):
         self.ax.set_zlim3d([z_middle - plot_radius, z_middle + plot_radius])
 
     def _add_teach_panel(self, robot, q):
-
         if _isnotebook():
             raise RuntimeError("cannot use teach panel under Jupyter")
 

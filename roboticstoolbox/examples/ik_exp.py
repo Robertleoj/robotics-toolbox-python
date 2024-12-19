@@ -1,16 +1,7 @@
 import numpy as np
 import roboticstoolbox as rtb
-import spatialmath as sm
-import fknm
-import time
-import swift
-import spatialgeometry as sg
-import sys
 from ansitable import ANSITable
 
-from numpy import ndarray
-from spatialmath import SE3
-from typing import Union, overload, List, Set
 
 # Our robot and ETS
 robot = rtb.models.Panda()
@@ -47,7 +38,6 @@ reject_jl = True
 
 class IK:
     def __init__(self, name, solve, problems=problems):
-
         # Solver attributes
         self.name = name
 

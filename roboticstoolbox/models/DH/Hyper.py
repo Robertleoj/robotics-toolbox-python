@@ -3,7 +3,6 @@
 @author: Peter Corke
 """
 
-
 # from math import pi
 import numpy as np
 from roboticstoolbox import DHRobot, RevoluteDH
@@ -48,15 +47,12 @@ class Hyper(DHRobot):
     """  # noqa
 
     def __init__(self, N=10, a=None, symbolic=False):
-
         if symbolic:
             import spatialmath.base.symbolic as sym
 
             zero = sym.zero()
             pi = sym.pi()
         else:
-            from math import pi
-
             zero = 0.0
 
         if a is None:
@@ -78,7 +74,6 @@ class Hyper(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     hyper = Hyper(N=10, symbolic=False)
     print(hyper)
 

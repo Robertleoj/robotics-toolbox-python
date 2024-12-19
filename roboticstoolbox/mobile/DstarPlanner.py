@@ -5,19 +5,16 @@
 See Wikipedia article (https://en.wikipedia.org/wiki/D*)
 
 """
+
 import math
 
-from sys import maxsize
 from collections import namedtuple
 from enum import IntEnum, auto
 import matplotlib.pyplot as plt
 import numpy as np
-import matplotlib.cm as cm
 from roboticstoolbox.mobile.PlannerBase import PlannerBase
-from roboticstoolbox.mobile.OccGrid import BinaryOccupancyGrid, OccupancyGrid
+from roboticstoolbox.mobile.OccGrid import OccupancyGrid
 import heapq
-import bisect
-import math
 
 show_animation = True
 
@@ -310,6 +307,7 @@ class _Dstar:
 
 # ====================== RTB wrapper ============================= #
 
+
 # Copyright (c) 2022 Peter Corke: https://github.com/petercorke/robotics-toolbox-python
 # Released under the MIT license: https://github.com/AtsushiSakai/PythonRobotics/blob/master/LICENSE
 class DstarPlanner(PlannerBase):
@@ -520,7 +518,6 @@ class DstarPlanner(PlannerBase):
 
 
 if __name__ == "__main__":
-
     og = np.zeros((10, 10))
     og[4:8, 3:6] = 1
     print(og)

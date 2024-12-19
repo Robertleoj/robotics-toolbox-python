@@ -197,7 +197,6 @@ class TestERobot2(unittest.TestCase):
 
     @unittest.skipUnless(_sympy, "sympy not installed")
     def test_symdyn(self):
-
         a1, a2, r1, r2, m1, m2, g = symbols("a1 a2 r1 r2 m1 m2 g")
         link1 = Link(ET.Ry(flip=True), m=m1, r=[r1, 0, 0], name="link0")
         link2 = Link(ET.tx(a1) * ET.Ry(flip=True), m=m2, r=[r2, 0, 0], name="link1")
@@ -219,5 +218,4 @@ class TestERobot2(unittest.TestCase):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     unittest.main()

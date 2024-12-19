@@ -2,6 +2,7 @@
 @Author: Peter Corke, original MATLAB code and Python version
 @Author: Kristian Gibson, initial MATLAB port
 """
+
 from abc import ABC
 from math import pi, atan2
 import numpy as np
@@ -112,7 +113,6 @@ class VehicleAnimationBase(ABC):
         return self._object
 
     def __del__(self):
-
         if self._object is not None:
             self._object.remove()
 
@@ -204,7 +204,6 @@ class VehiclePolygon(VehicleAnimationBase):
         """
         super().__init__()
         if isinstance(shape, str):
-
             h = 0.3
             t = 0.8  # start of head taper
             c = 0.5  # centre x coordinate
@@ -247,7 +246,6 @@ class VehiclePolygon(VehicleAnimationBase):
         self._ax.add_patch(self._object)
 
     def _update(self, x):
-
         if self._object is not None:
             # if animation is initialized
             xy = SE2(x) * self._coords
@@ -398,7 +396,6 @@ class VehicleIcon(VehicleAnimationBase):
         )
 
     def _update(self, x):
-
         # center_x = self._width // 2
         # center_y = self._height // 2
         center_x = 0

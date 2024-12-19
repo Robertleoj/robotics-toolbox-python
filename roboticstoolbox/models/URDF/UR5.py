@@ -29,7 +29,6 @@ class UR5(Robot):
     """
 
     def __init__(self):
-
         links, name, urdf_string, urdf_filepath = self.URDF_read(
             "ur_description/urdf/ur5_joint_limited_robot.urdf.xacro"
         )
@@ -69,7 +68,6 @@ class UR5(Robot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = UR5()
     print(robot)
     print(robot.ets())

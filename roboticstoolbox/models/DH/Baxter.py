@@ -45,7 +45,6 @@ class Baxter(DHRobot):
     """  # noqa
 
     def __init__(self, arm="left"):
-
         links = [
             RevoluteDH(d=0.27, a=0.069, alpha=-pi / 2),
             RevoluteDH(d=0, a=0, alpha=pi / 2, offset=pi / 2),
@@ -81,7 +80,6 @@ class Baxter(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     baxter = Baxter("left")
     print(baxter.name, baxter.base)
     # baxter.plot(baxter.qz, block=False)

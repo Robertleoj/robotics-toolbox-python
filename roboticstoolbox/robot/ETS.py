@@ -435,12 +435,10 @@ class BaseETS(UserList):
         return self._m
 
     @overload
-    def data(self: "ETS") -> List[ET]:
-        ...  # pragma: nocover
+    def data(self: "ETS") -> List[ET]: ...  # pragma: nocover
 
     @overload
-    def data(self: "ETS2") -> List[ET2]:
-        ...  # pragma: nocover
+    def data(self: "ETS2") -> List[ET2]: ...  # pragma: nocover
 
     @property
     def data(self):
@@ -448,25 +446,21 @@ class BaseETS(UserList):
 
     @data.setter
     @overload
-    def data(self: "ETS", new_data: List[ET]):
-        ...  # pragma: nocover
+    def data(self: "ETS", new_data: List[ET]): ...  # pragma: nocover
 
     @data.setter
     @overload
-    def data(self: "ETS", new_data: List[ET2]):
-        ...  # pragma: nocover
+    def data(self: "ETS", new_data: List[ET2]): ...  # pragma: nocover
 
     @data.setter
     def data(self, new_data):
         self._data = new_data
 
     @overload
-    def pop(self: "ETS", i: int = -1) -> ET:
-        ...  # pragma: nocover
+    def pop(self: "ETS", i: int = -1) -> ET: ...  # pragma: nocover
 
     @overload
-    def pop(self: "ETS2", i: int = -1) -> ET2:
-        ...  # pragma: nocover
+    def pop(self: "ETS2", i: int = -1) -> ET2: ...  # pragma: nocover
 
     def pop(self, i=-1):
         """
@@ -506,12 +500,10 @@ class BaseETS(UserList):
         return item
 
     @overload
-    def split(self: "ETS") -> List["ETS"]:
-        ...  # pragma: nocover
+    def split(self: "ETS") -> List["ETS"]: ...  # pragma: nocover
 
     @overload
-    def split(self: "ETS2") -> List["ETS2"]:
-        ...  # pragma: nocover
+    def split(self: "ETS2") -> List["ETS2"]: ...  # pragma: nocover
 
     def split(self):
         """
@@ -548,12 +540,10 @@ class BaseETS(UserList):
         return segments
 
     @overload
-    def inv(self: "ETS") -> "ETS":
-        ...  # pragma: nocover
+    def inv(self: "ETS") -> "ETS": ...  # pragma: nocover
 
     @overload
-    def inv(self: "ETS2") -> "ETS2":
-        ...  # pragma: nocover
+    def inv(self: "ETS2") -> "ETS2": ...  # pragma: nocover
 
     def inv(self):
         r"""
@@ -589,20 +579,16 @@ class BaseETS(UserList):
         return self.__class__([et.inv() for et in reversed(self.data)])
 
     @overload
-    def __getitem__(self: "ETS", i: int) -> ET:
-        ...  # pragma: nocover
+    def __getitem__(self: "ETS", i: int) -> ET: ...  # pragma: nocover
 
     @overload
-    def __getitem__(self: "ETS", i: slice) -> List[ET]:
-        ...  # pragma: nocover
+    def __getitem__(self: "ETS", i: slice) -> List[ET]: ...  # pragma: nocover
 
     @overload
-    def __getitem__(self: "ETS2", i: int) -> ET2:
-        ...  # pragma: nocover
+    def __getitem__(self: "ETS2", i: int) -> ET2: ...  # pragma: nocover
 
     @overload
-    def __getitem__(self: "ETS2", i: slice) -> List[ET2]:
-        ...  # pragma: nocover
+    def __getitem__(self: "ETS2", i: slice) -> List[ET2]: ...  # pragma: nocover
 
     def __getitem__(self, i):
         """

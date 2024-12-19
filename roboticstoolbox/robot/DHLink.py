@@ -10,10 +10,9 @@ from roboticstoolbox.robot.Link import Link, _listen_dyn
 from roboticstoolbox.robot.ETS import ETS
 from roboticstoolbox.robot.ET import ET
 from spatialmath import SE3
-from typing import List, Union
+from typing import Union
 from functools import wraps
 from numpy import ndarray, cos, sin, array
-from spatialgeometry import Shape
 from copy import deepcopy
 
 # _eps = np.finfo(np.float64).eps
@@ -354,7 +353,6 @@ class DHLink(Link):
             raise TypeError("Cannot add a Link with a non Link object")
 
     def __str__(self):
-
         s = ""
 
         if self.offset == 0:
@@ -754,7 +752,6 @@ class RevoluteDH(DHLink):
     def __init__(
         self, d=0.0, a=0.0, alpha=0.0, offset=0.0, qlim=None, flip=False, **kwargs
     ):
-
         theta = 0.0
         sigma = 0
         mdh = False
@@ -819,7 +816,6 @@ class PrismaticDH(DHLink):
     def __init__(
         self, theta=0.0, a=0.0, alpha=0.0, offset=0.0, qlim=None, flip=False, **kwargs
     ):
-
         d = 0.0
         sigma = 1
         mdh = False
@@ -890,7 +886,6 @@ class RevoluteMDH(DHLink):
     def __init__(
         self, d=0.0, a=0.0, alpha=0.0, offset=0.0, qlim=None, flip=False, **kwargs
     ):
-
         theta = 0.0
         sigma = 0
         mdh = True
@@ -963,7 +958,6 @@ class PrismaticMDH(DHLink):
     def __init__(
         self, theta=0.0, a=0.0, alpha=0.0, offset=0.0, qlim=None, flip=False, **kwargs
     ):
-
         d = 0.0
         sigma = 1
         mdh = True

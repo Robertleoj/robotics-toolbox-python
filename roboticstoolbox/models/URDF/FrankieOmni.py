@@ -34,7 +34,6 @@ class FrankieOmni(Robot):
     """
 
     def __init__(self):
-
         links_base, _, urdf_string, urdf_filepath = self.URDF_read(
             "ridgeback_description/urdf/ridgeback.urdf.xacro"
         )

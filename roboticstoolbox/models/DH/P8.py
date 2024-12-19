@@ -19,7 +19,6 @@
 import numpy as np
 from roboticstoolbox import DHRobot, PrismaticDH, models
 from spatialmath import SE3
-from spatialmath import base
 from math import pi
 
 
@@ -51,7 +50,6 @@ class P8(DHRobot):
     """  # noqa
 
     def __init__(self):
-
         # create the base
         links = [
             PrismaticDH(alpha=-pi / 2, qlim=[-1, 1]),
@@ -74,7 +72,6 @@ class P8(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = P8()
     print(robot)
 

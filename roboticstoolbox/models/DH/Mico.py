@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
-from math import pi, sin, cos
+from math import sin, cos
 import numpy as np
 from roboticstoolbox import DHRobot, RevoluteDH
-from spatialmath import SE3
 
 
 class Mico(DHRobot):
@@ -40,7 +39,6 @@ class Mico(DHRobot):
     """
 
     def __init__(self, symbolic=False):
-
         if symbolic:
             import spatialmath.base.symbolic as sym
 
@@ -98,6 +96,5 @@ class Mico(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     mico = Mico(symbolic=False)
     print(mico)

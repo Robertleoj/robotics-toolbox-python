@@ -15,7 +15,6 @@ from progress.bar import FillingCirclesBar
 
 
 class PGVertex(pgraph.UVertex):
-
     nvertices = 0  # reset this before each PGGraph build
 
     def __init__(self, type, **kwargs):
@@ -92,7 +91,6 @@ class PGEdge(pgraph.Edge):
 
 
 class PoseGraph:
-
     # properties
     #     graph
 
@@ -141,7 +139,6 @@ class PoseGraph:
             opener = open
 
         with opener(path, "r") as f:
-
             toroformat = False
             nlidar = 0
 
@@ -301,7 +298,6 @@ class PoseGraph:
         return v.range, v.theta
 
     def scanxy(self, i):
-
         range, theta = self.scan(i)
         range = np.where(range < self._maxrange, range, np.nan)
         x = range * np.cos(theta)
@@ -323,11 +319,11 @@ class PoseGraph:
         return self.vindex[i].time
 
     def plot(self, **kwargs):
-        if not "vopt" in kwargs:
+        if "vopt" not in kwargs:
             kwargs["vopt"] = dict(
                 markersize=8, markerfacecolor="blue", markeredgecolor="None"
             )
-        if not "eopt" in kwargs:
+        if "eopt" not in kwargs:
             kwargs["eopt"] = dict(linewidth=1)
         self.graph.plot(colorcomponents=False, force2d=True, **kwargs)
         plt.xlabel("x")
@@ -349,7 +345,6 @@ class PoseGraph:
 
         grid1d = occgrid.ravel
         for i in range(0, self.graph.n, 5):
-
             xy = self.scanxy(i)
             r, theta = self.scan(i)
             if maxrange is not None:
@@ -363,7 +358,6 @@ class PoseGraph:
             p1 = occgrid.w2g(xyt[:2])
 
             for p2 in occgrid.w2g(xy.T):
-
                 # all cells along the ray
                 try:
                     k = occgrid._line(p1, p2)
@@ -389,7 +383,6 @@ class PoseGraph:
         return (np.r_[g] - self._ngrid / 2) * self._cellsize + self._centre
 
     def plot_occgrid(self, w, block=None):
-
         bl = self.g2w([0, 0])
         tr = self.g2w([w.shape[1], w.shape[0]])
 
@@ -414,7 +407,6 @@ class PoseGraph:
     #  vol. 2, no. 4, pp. 31-43, winter 2010, doi: 10.1109/MITS.2010.939925.
 
     def optimize(self, iterations=10, animate=False, retain=True, **kwargs):
-
         eprev = math.inf
         eo = {}
 
@@ -523,7 +515,6 @@ class PoseGraph:
 
 
 if __name__ == "__main__":
-
     pg = PoseGraph("data/pg1.g2o")
     pg.optimize(animate=True, retain=False)
 

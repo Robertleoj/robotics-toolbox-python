@@ -3,8 +3,6 @@
 @author Jesse Haviland
 """
 
-from collections import namedtuple
-from email import message
 from roboticstoolbox.tools.data import rtb_path_to_datafile
 import warnings
 import copy
@@ -12,7 +10,6 @@ import numpy as np
 from roboticstoolbox.robot.Robot import Robot  # DHLink
 from roboticstoolbox.robot.ETS import ETS, ET
 from roboticstoolbox.robot.DHLink import DHLink
-from roboticstoolbox import rtb_set_param
 from spatialmath.base.argcheck import getvector, isscalar, verifymatrix, getmatrix
 
 # from spatialmath import base
@@ -29,8 +26,7 @@ import spatialmath.base.symbolic as sym
 
 # from scipy.optimize import minimize, Bounds
 from ansitable import ANSITable, Column
-from scipy.linalg import block_diag
-from roboticstoolbox.robot.DHLink import _check_rne, DHLink
+from roboticstoolbox.robot.DHLink import _check_rne
 from roboticstoolbox import rtb_get_param
 from roboticstoolbox.frne import init, frne, delete
 from numpy import any

@@ -18,7 +18,6 @@
 # from math import pi
 import numpy as np
 from roboticstoolbox import DHRobot, RevoluteDH
-from spatialmath import SE3
 from spatialmath import base
 
 
@@ -73,7 +72,6 @@ class Puma560(DHRobot):
     """  # noqa
 
     def __init__(self, symbolic=False):
-
         if symbolic:
             import spatialmath.base.symbolic as sym
 
@@ -239,7 +237,6 @@ class Puma560(DHRobot):
         """
 
         def ik3(robot, T, config="lun"):
-
             config = self.config_validate(config, ("lr", "ud", "nf"))
 
             # solve for the first three joints
@@ -293,8 +290,7 @@ class Puma560(DHRobot):
             with np.errstate(invalid="raise"):
                 try:
                     Psi = np.arccos(
-                        (a2**2 - d4**2 - a3**2 + V114**2 + Pz**2)
-                        / (2.0 * a2 * r)
+                        (a2**2 - d4**2 - a3**2 + V114**2 + Pz**2) / (2.0 * a2 * r)
                     )
                 except FloatingPointError:
                     return "Out of reach"
@@ -315,7 +311,6 @@ class Puma560(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     puma = Puma560(symbolic=False)
     print(puma)
     print(puma.dynamics())

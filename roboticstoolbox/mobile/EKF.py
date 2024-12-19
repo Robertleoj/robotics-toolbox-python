@@ -6,14 +6,11 @@ Python EKF Planner
 
 from collections import namedtuple
 import numpy as np
-from math import pi
-from scipy import integrate
-from scipy.linalg import sqrtm, block_diag
+from scipy.linalg import block_diag
 from scipy.stats.distributions import chi2
 import matplotlib.pyplot as plt
 from matplotlib import animation
 
-from spatialmath.base.animate import Animate
 from spatialmath import base, SE2
 from roboticstoolbox.mobile import VehicleBase
 from roboticstoolbox.mobile.landmarkmap import LandmarkMap
@@ -991,7 +988,6 @@ class EKF:
     ## landmark management
 
     def _isseenbefore(self, lm_id):
-
         # _landmarks[0, id] is the order in which seen
         # _landmarks[1, id] is the occurence count
 
@@ -1424,7 +1420,6 @@ class EKF:
 
 
 if __name__ == "__main__":
-
     from roboticstoolbox import *
 
     V = np.diag([0.02, np.deg2rad(0.5)]) ** 2

@@ -34,7 +34,6 @@ class Planar3(DHRobot):
     """
 
     def __init__(self):
-
         L = [RevoluteDH(a=1), RevoluteDH(a=1), RevoluteDH(a=1)]
 
         super().__init__(L, name="Planar 3 link", keywords=("planar",))
@@ -47,6 +46,5 @@ class Planar3(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = Planar3()
     print(robot)

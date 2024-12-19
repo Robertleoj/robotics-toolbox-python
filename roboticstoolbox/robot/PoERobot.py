@@ -106,10 +106,9 @@ class PoERobot(Robot):
         s += "\n".join(["    " + repr(link) + "," for link in self])
         s += "\n    ],\n"
         s += f"    T0=SE3({np.array_repr(self.T0.A)}),\n"
-        s += f"    name=\"{self.name}\",\n"
+        s += f'    name="{self.name}",\n'
         s += ")"
         return s
-
 
     def nbranches(self):
         return 0
@@ -182,7 +181,6 @@ class PoERobot(Robot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     T0 = SE3.Trans(2, 0, 0)
 
     # rotate about z-axis, through (0,0,0)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from math import sin, cos
+from math import sin
 import numpy as np
 from roboticstoolbox import DHRobot, RevoluteDH
 # from spatialmath import SE3
@@ -40,7 +40,6 @@ class Jaco(DHRobot):
     """
 
     def __init__(self, symbolic=False):
-
         if symbolic:
             import spatialmath.base.symbolic as sym
 
@@ -98,6 +97,5 @@ class Jaco(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     jaco = Jaco(symbolic=False)
     print(jaco)

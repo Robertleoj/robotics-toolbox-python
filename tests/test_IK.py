@@ -16,7 +16,6 @@ test_tol = 1e-5
 
 class TestIK(unittest.TestCase):
     def test_IK_NR1(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -36,7 +35,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_IK_NR2(self):
-
         q0 = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0]
 
         tol = 1e-6
@@ -58,7 +56,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_IK_NR3(self):
-
         q0 = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0]
 
         tol = 1e-6
@@ -80,7 +77,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_IK_NR4(self):
-
         q0 = np.array(
             [
                 [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0],
@@ -110,7 +106,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_IK_NR5(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -130,7 +125,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_IK_NR6(self):
-
         panda = rtb.models.Panda().ets()
 
         Tep = panda.eval([0, -0.3, 0, -2.2, 0, 2.0, np.pi / 4])
@@ -142,7 +136,6 @@ class TestIK(unittest.TestCase):
         self.assertEqual(sol.success, False)
 
     def test_IK_NR7(self):
-
         panda = rtb.models.Panda().ets()
 
         Tep = panda.eval([0, -1.3, 0, 1.2, 0, 2.0, 0.1])
@@ -155,7 +148,6 @@ class TestIK(unittest.TestCase):
 
     @pytest.mark.filterwarnings("ignore::RuntimeWarning")
     def test_IK_NR8(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -183,7 +175,6 @@ class TestIK(unittest.TestCase):
 
     @pytest.mark.filterwarnings("ignore::RuntimeWarning")
     def test_IK_LM1(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -205,7 +196,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_IK_LM2(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -227,7 +217,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_IK_LM3(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -250,7 +239,6 @@ class TestIK(unittest.TestCase):
 
     @pytest.mark.filterwarnings("ignore::RuntimeWarning")
     def test_IK_GN1(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -272,7 +260,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_IK_GN2(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -292,7 +279,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_IK_GN3(self):
-
         tol = 1e-6
 
         ur5 = rtb.models.UR5().ets()
@@ -312,7 +298,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_IK_QP1(self):
-
         q0 = np.array(
             [
                 -1.66441371,
@@ -344,7 +329,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_IK_QP2(self):
-
         q0 = np.array(
             [
                 -1.66441371,
@@ -376,7 +360,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_IK_QP3(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -402,7 +385,6 @@ class TestIK(unittest.TestCase):
     #     self.assertEqual(sol.success, False)
 
     def test_ets_ikine_NR1(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -425,7 +407,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_ets_ikine_NR2(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -445,7 +426,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_ets_ikine_LM1(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -468,7 +448,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_ets_ikine_LM2(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -488,7 +467,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_ets_ikine_GN1(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -511,7 +489,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_ets_ikine_GN2(self):
-
         tol = 1e-6
 
         panda = rtb.models.Panda().ets()
@@ -531,7 +508,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_ets_ikine_QP1(self):
-
         q0 = np.array(
             [
                 -1.66441371,
@@ -563,7 +539,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_ets_ikine_QP2(self):
-
         q0 = np.array(
             [
                 -1.66441371,
@@ -598,7 +573,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E)
 
     def test_ik_nr(self):
-
         tol = 1e-6
 
         solver = rtb.IK_LM()
@@ -624,7 +598,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E2)
 
     def test_ik_lm_chan(self):
-
         tol = 1e-6
 
         solver = rtb.IK_LM()
@@ -650,7 +623,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E2)
 
     def test_ik_lm_wampler(self):
-
         tol = 1e-6
 
         solver = rtb.IK_LM()
@@ -676,7 +648,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E2)
 
     def test_ik_lm_sugihara(self):
-
         tol = 1e-6
 
         solver = rtb.IK_LM()
@@ -702,7 +673,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E2)
 
     def test_ik_gn(self):
-
         tol = 1e-6
 
         solver = rtb.IK_LM()
@@ -732,7 +702,6 @@ class TestIK(unittest.TestCase):
         self.assertGreater(test_tol, E2)
 
     def test_sol_print1(self):
-
         sol = rtb.IKSolution(
             q=np.zeros(3),
             success=True,
@@ -752,7 +721,6 @@ class TestIK(unittest.TestCase):
         self.assertEqual(s, ans)
 
     def test_sol_print2(self):
-
         sol = rtb.IKSolution(
             q=None,  # type: ignore
             success=True,
@@ -769,7 +737,6 @@ class TestIK(unittest.TestCase):
         self.assertEqual(s, ans)
 
     def test_sol_print3(self):
-
         sol = rtb.IKSolution(
             q=np.zeros(3),
             success=False,
@@ -786,7 +753,6 @@ class TestIK(unittest.TestCase):
         self.assertEqual(s, ans)
 
     def test_sol_print4(self):
-
         sol = rtb.IKSolution(
             q=np.zeros(3),
             success=True,
@@ -803,7 +769,6 @@ class TestIK(unittest.TestCase):
         self.assertEqual(s, ans)
 
     def test_sol_print5(self):
-
         sol = rtb.IKSolution(
             q=np.zeros(3),
             success=False,
@@ -842,5 +807,4 @@ class TestIK(unittest.TestCase):
 
 
 if __name__ == "__main__":
-
     unittest.main()

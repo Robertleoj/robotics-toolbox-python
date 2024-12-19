@@ -67,7 +67,6 @@ n = n_base + n_arm + n_camera
 
 
 def step():
-
     # Find end-effector pose in world frame
     wTe = fetch.fkine(fetch.q).A
     # Find camera pose in world frame

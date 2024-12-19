@@ -6,8 +6,6 @@ import matplotlib.pyplot as plt
 from spatialmath.base.argcheck import (
     isvector,
     getvector,
-    # assertmatrix,
-    getvector,
     isscalar,
 )
 
@@ -244,7 +242,7 @@ class Trajectory:
             ax.set_xlim(0, max(self.t))
 
             if self.istime:
-                ax.set_ylabel(f"$\ddot{{q}}(t)$", **textopts)
+                ax.set_ylabel("$\ddot{q}(t)$", **textopts)
                 ax.set_xlabel("t (seconds)")
             else:
                 ax.set_ylabel("$d^2q/dk^2$", **textopts)
@@ -566,7 +564,6 @@ def trapezoidal_func(q0, qf, T, V=None):
         a = V / tb
 
     def trapezoidalfunc(t):
-
         p = []
         pd = []
         pdd = []
@@ -966,7 +963,6 @@ def mstraj(
             raise ValueError("Length of TSEG does not match number of viapoints")
 
     if tsegment is None:
-
         # This is unreachable, left just in case
         if qdmax is None:  # pragma nocover
             raise ValueError("qdmax must be given if tsegment is not")
@@ -1128,7 +1124,6 @@ def mstraj(
 
 
 if __name__ == "__main__":
-
     # t = quintic(0, 1, 50)
     # t.plot()
 

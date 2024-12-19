@@ -17,7 +17,6 @@ from roboticstoolbox.robot.Robot import BaseRobot
 
 class TestBaseRobot(unittest.TestCase):
     def test_init(self):
-
         links, name, urdf_string, urdf_filepath = rtb.Robot.URDF_read(
             "franka_description/robots/panda_arm_hand.urdf.xacro"
         )
@@ -64,7 +63,6 @@ class TestBaseRobot(unittest.TestCase):
         self.assertEqual(robot.comment, "other stuff")
 
     def test_init5(self):
-
         base = SE3.Trans(0, 0, 0.1).A
         ets = ETS(rtb.ET.Rz())
         robot = Robot(ets, base=base, tool=base)
@@ -72,7 +70,6 @@ class TestBaseRobot(unittest.TestCase):
         nt.assert_almost_equal(robot.tool.A, base)
 
     def test_init6(self):
-
         base = SE3.Trans(0, 0, 0.1)
         ets = ETS(rtb.ET.Rz())
         robot = Robot(ets, base=base, tool=base)
@@ -80,7 +77,6 @@ class TestBaseRobot(unittest.TestCase):
         nt.assert_almost_equal(robot.tool.A, base.A)
 
     def test_init7(self):
-
         keywords = 2
         ets = ETS(rtb.ET.Rz())
 
@@ -88,14 +84,12 @@ class TestBaseRobot(unittest.TestCase):
             Robot(ets, keywords=keywords)  # type: ignore
 
     def test_init8(self):
-
         links = [2, 3, 4, 5]
 
         with self.assertRaises(TypeError):
             BaseRobot(links=links)  # type: ignore
 
     def test_init9(self):
-
         robot = rtb.models.Panda()
         robot2 = rtb.models.PR2()
 
@@ -104,14 +98,12 @@ class TestBaseRobot(unittest.TestCase):
         self.assertTrue(robot._hascollision)
 
     def test_init10(self):
-
         links = [Link(name="link1"), Link(name="link1"), Link(name="link1")]
 
         with self.assertRaises(ValueError):
             Robot(links)
 
     def test_init11(self):
-
         l1 = Link(parent="l3")
         l2 = Link(parent=l1)
         l3 = Link(parent=l2, name="l3")
@@ -122,7 +114,6 @@ class TestBaseRobot(unittest.TestCase):
             Robot(links)
 
     def test_init12(self):
-
         l1 = Link(jindex=1, ets=rtb.ET.Rz())
         l2 = Link(jindex=2, parent=l1, ets=rtb.ET.Rz())
         l3 = Link(parent=l2, ets=rtb.ET.Rz())
@@ -143,7 +134,6 @@ class TestBaseRobot(unittest.TestCase):
         self.assertIsInstance(panda["link0"], Link)
 
     def test_init_ets(self):
-
         ets = (
             rtb.ET.tx(-0.0825)
             * rtb.ET.Rz()

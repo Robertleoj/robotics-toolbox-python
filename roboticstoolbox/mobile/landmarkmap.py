@@ -1,10 +1,6 @@
-from abc import ABC
 import numpy as np
-import scipy as sp
-from math import pi, sin, cos
 import matplotlib.pyplot as plt
 from spatialmath import base
-import roboticstoolbox as rtb
 
 
 class LandmarkMap:
@@ -59,7 +55,6 @@ class LandmarkMap:
     """
 
     def __init__(self, map, workspace=10, verbose=True, seed=0):
-
         try:
             self._workspace = workspace.workspace
         except:
@@ -178,4 +173,4 @@ class LandmarkMap:
 
 
 if __name__ == "__main__":
-    import unittest
+    pass

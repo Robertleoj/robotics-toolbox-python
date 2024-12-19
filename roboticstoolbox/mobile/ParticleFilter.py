@@ -5,7 +5,7 @@ Python EKF Planner
 @Author: Peter Corke, original MATLAB code and Python version
 @Author: Kristian Gibson, initial MATLAB port
 
-Based on code by Paul Newman, Oxford University, 
+Based on code by Paul Newman, Oxford University,
 http://www.robots.ox.ac.uk/~pnewman
 """
 
@@ -355,7 +355,6 @@ class ParticleFilter:
         # self.robot.plot()
 
         # iterate over time
-        import time
 
         for i in range(round(T / self.robot.dt)):
             self._step()
@@ -491,7 +490,6 @@ class ParticleFilter:
         # # anim.close()
 
     def _step(self):
-
         # fprintf('---- step\n')
         odo = self.robot.step(animate=self._animate)  # move the robot
 

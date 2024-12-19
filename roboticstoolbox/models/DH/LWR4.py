@@ -36,7 +36,6 @@ class LWR4(DHRobot):
     """  # noqa
 
     def __init__(self):
-
         # deg = np.pi/180
         mm = 1e-3
         tool_offset = (103) * mm
@@ -81,6 +80,5 @@ class LWR4(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = LWR4()
     print(robot)

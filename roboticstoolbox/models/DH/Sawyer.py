@@ -37,7 +37,6 @@ class Sawyer(DHRobot):
     """
 
     def __init__(self, symbolic=False):
-
         if symbolic:
             import spatialmath.base.symbolic as sym
 
@@ -81,6 +80,5 @@ class Sawyer(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     sawyer = Sawyer(symbolic=False)
     print(sawyer)

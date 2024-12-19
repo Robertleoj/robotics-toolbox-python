@@ -6,7 +6,6 @@ import numpy as np
 
 class PR2(Robot):
     def __init__(self):
-
         links, name, urdf_string, urdf_filepath = self.URDF_read(
             "pr2_description/robots/pr2.urdf.xacro", xacro_tld="pr2_description"
         )
@@ -34,7 +33,6 @@ class PR2(Robot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     r = PR2()
 
     # i = 0

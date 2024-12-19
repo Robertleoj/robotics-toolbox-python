@@ -1,15 +1,8 @@
-import numpy as np
-from math import sin, cos, pi
-
 # import matplotlib.pyplot as plt
-import time
 from spatialmath import SE3
 import spatialmath.base as smb
 
-from bdsim.components import TransferBlock, FunctionBlock, SourceBlock
-from bdsim.graphics import GraphicsBlock
-
-from roboticstoolbox import quintic_func, trapezoidal_func
+from bdsim.components import FunctionBlock
 
 
 class Tr2Delta(FunctionBlock):
@@ -237,7 +230,6 @@ class TR2T(FunctionBlock):
 
 
 if __name__ == "__main__":
-
     from pathlib import Path
 
     exec(

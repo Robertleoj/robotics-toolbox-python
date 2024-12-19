@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from spatialmath import base
 import scipy.ndimage as sp
 from abc import ABC
 import spatialmath.base as smb
@@ -316,7 +315,6 @@ class BaseOccupancyGrid(BaseMap):
         return self._line(gp1, gp2)
 
     def _line(self, p1, p2):
-
         x, y = smb.bresenham(p1, p2)
         z = np.ravel_multi_index(np.vstack((y, x)), self.grid.shape)
         return z
@@ -563,7 +561,6 @@ class PolygonMap(BaseMap):
 
 
 if __name__ == "__main__":
-
     # g = np.zeros((100, 100))
     # g[20:30, 50:80] = 1
 

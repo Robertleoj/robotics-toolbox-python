@@ -1,6 +1,5 @@
 import numpy as np
 from roboticstoolbox import DHRobot, RevoluteDH
-from spatialmath import SE3
 
 
 class UR5(DHRobot):
@@ -39,7 +38,6 @@ class UR5(DHRobot):
     """  # noqa
 
     def __init__(self, symbolic=False):
-
         if symbolic:
             import spatialmath.base.symbolic as sym
 
@@ -93,7 +91,6 @@ class UR5(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     ur5 = UR5(symbolic=False)
     print(ur5)
     # print(ur5.dyntable())

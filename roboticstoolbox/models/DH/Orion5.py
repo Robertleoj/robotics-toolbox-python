@@ -42,7 +42,6 @@ class Orion5(DHRobot):
     """
 
     def __init__(self, base=None):
-
         mm = 1e-3
         deg = pi / 180
 
@@ -87,6 +86,5 @@ class Orion5(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     orion = Orion5()
     print(orion)

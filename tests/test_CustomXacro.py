@@ -18,7 +18,6 @@ class TestCustomXacro(unittest.TestCase):
     def test_custom(self):
         class CustomPanda(Robot):
             def __init__(self, xacro_path):
-
                 links, name, urdf_string, urdf_filepath = self.URDF_read(
                     "franka_description/robots/panda_arm_hand.urdf.xacro",
                     tld=xacro_path,
@@ -63,5 +62,4 @@ class TestCustomXacro(unittest.TestCase):
 
 
 if __name__ == "__main__":
-
     unittest.main()

@@ -38,7 +38,6 @@ class Puma560(Robot):
     """
 
     def __init__(self):
-
         links, name, urdf_string, urdf_filepath = self.URDF_read(
             "puma560_description/urdf/puma560_robot.urdf.xacro"
         )
@@ -91,7 +90,6 @@ class Puma560(Robot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = Puma560()
     print(robot)
 

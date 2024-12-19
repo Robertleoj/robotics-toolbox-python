@@ -7,7 +7,6 @@
 # Copyright (c) 2016 - 2022 Atsushi Sakai and other contributors: https://github.com/AtsushiSakai/PythonRobotics/contributors
 # Released under the MIT license: https://github.com/AtsushiSakai/PythonRobotics/blob/master/LICENSE
 
-import math
 from collections import namedtuple
 from roboticstoolbox.mobile.OccGrid import PolygonMap
 
@@ -16,7 +15,7 @@ from roboticstoolbox import *
 import numpy as np
 import matplotlib.pyplot as plt
 
-from spatialmath import Polygon2, SE2, base
+from spatialmath import Polygon2
 from roboticstoolbox.mobile.PlannerBase import PlannerBase
 from roboticstoolbox.mobile.DubinsPlanner import DubinsPlanner
 

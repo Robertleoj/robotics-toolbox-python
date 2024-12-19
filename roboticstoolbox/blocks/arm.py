@@ -2,7 +2,6 @@ import numpy as np
 from math import sin, cos, pi
 
 # import matplotlib.pyplot as plt
-import time
 from spatialmath import SE3
 import spatialmath.base as smb
 
@@ -1482,7 +1481,7 @@ class FDyn_X(TransferBlock):
         :type velcomp: bool
         :param representation: task-space representation, defaults to "rpy/xyz"
         :type representation: str
-    
+
         :param blockargs: |BlockOptions|
         :type blockargs: dict
         """

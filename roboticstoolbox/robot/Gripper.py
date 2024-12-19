@@ -25,7 +25,6 @@ class Gripper(Generic[LinkType]):
         name: str = "",
         tool: Union[NDArray, SE3, None] = None,
     ):
-
         self._n = 0
 
         self.name = name
@@ -50,7 +49,6 @@ class Gripper(Generic[LinkType]):
                 if link.isjoint
             ]
         ):
-
             jindex = [0]  # "mutable integer" hack
 
             def visit_link(link, jindex):

@@ -3,6 +3,7 @@ Python Vehicle
 @Author: Peter Corke, original MATLAB code and Python version
 @Author: Kristian Gibson, initial MATLAB port
 """
+
 from abc import ABC, abstractmethod
 import warnings
 from math import pi, sin, cos, tan
@@ -284,7 +285,6 @@ class VehicleBase(ABC):
 
     @control.setter
     def control(self, control):
-
         # * a function called as ``f(vehicle, t, x)`` that returns a tuple
         # * an interpolator called as f(t) that returns a tuple, see
         #   SciPy interp1d
@@ -610,7 +610,6 @@ class VehicleBase(ABC):
 
         # initialize the graphics
         if animate and self._animation is not None:
-
             # setup the plot
             self._ax = base.plotvol2(self.workspace)
 
@@ -973,7 +972,6 @@ class Bicycle(VehicleBase):
         self._steer_max = steer_max
 
     def __str__(self):
-
         s = super().__str__()
         s += (
             f"\n  L={self._l}, steer_max={self._steer_max:g},"
@@ -1125,7 +1123,6 @@ class Unicycle(VehicleBase):
         self._steer_max = steer_max
 
     def __str__(self):
-
         s = super().__str__()
         s += (
             f"\n  W={self._W}, steer_max={self._steer_max:g},"
@@ -1218,7 +1215,6 @@ class DiffSteer(Unicycle):
         self._v_prev_R = [0]
 
     def __str__(self):
-
         s = super().__str__()
         return s
 
@@ -1226,7 +1222,6 @@ class DiffSteer(Unicycle):
         super().init()
         self._v_prev_L = [0]
         self._v_prev_R = [0]
-
 
     def u_limited(self, u):
         """
@@ -1247,7 +1242,7 @@ class DiffSteer(Unicycle):
         ulim[1] = self.limits_va(u[1], self._v_prev_R)
 
         return ulim
-    
+
     def deriv(self, x, u, limits=True):
         r"""
         Time derivative of state
@@ -1292,11 +1287,7 @@ class DiffSteer(Unicycle):
         return np.r_[v * cos(theta), v * sin(theta), vdiff / self._W]
 
 
-    
 if __name__ == "__main__":
-
-    from roboticstoolbox import RandomPath
-
     import roboticstoolbox as rtb
 
     a = rtb.VehicleMarker(marker="s", markerfacecolor="b")

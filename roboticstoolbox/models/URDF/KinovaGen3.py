@@ -30,7 +30,6 @@ class KinovaGen3(Robot):
     """
 
     def __init__(self):
-
         links, name, urdf_string, urdf_filepath = self.URDF_read(
             "kortex_description/robots/gen3.xacro"
         )
@@ -55,6 +54,5 @@ class KinovaGen3(Robot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = KinovaGen3()
     print(robot)

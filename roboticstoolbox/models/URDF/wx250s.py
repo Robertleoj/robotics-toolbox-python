@@ -31,7 +31,6 @@ class wx250s(Robot):
     """
 
     def __init__(self):
-
         links, name, urdf_string, urdf_filepath = self.URDF_read(
             "interbotix_descriptions/urdf/wx250s.urdf.xacro"
         )
@@ -52,6 +51,5 @@ class wx250s(Robot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = wx250s()
     print(robot)

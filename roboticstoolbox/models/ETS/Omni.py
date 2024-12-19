@@ -37,7 +37,6 @@ class Omni(Robot):
     """
 
     def __init__(self):
-
         l, w, h = 0.55, 0.40, 0.35
 
         b0 = Link(ETS(ET.Rz()), name="base0", parent=None, qlim=[-1000, 1000])
@@ -70,6 +69,5 @@ class Omni(Robot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = Omni()
     print(robot)

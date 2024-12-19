@@ -6,11 +6,9 @@ Created on 28 December 2020
 import numpy.testing as nt
 import roboticstoolbox as rtb
 import numpy as np
-import spatialmath.base as sm
 import unittest
 
 # from roboticstoolbox import Bug2, DistanceTransformPlanner, rtb_loadmat
-from roboticstoolbox import Bug2
 from roboticstoolbox.mobile.Bug2 import edgelist
 from roboticstoolbox.mobile.landmarkmap import *
 from roboticstoolbox.mobile.drivers import *
@@ -82,14 +80,12 @@ class RangeBearingSensorTest(unittest.TestCase):
         self.rs = RangeBearingSensor(self.veh, self.map)
 
     def test_init(self):
-
         self.assertIsInstance(self.rs.map, rtb.LandmarkMap)
         self.assertIsInstance(self.rs.robot, rtb.Bicycle)
 
         self.assertIsInstance(str(self.rs), str)
 
     def test_reading(self):
-
         z, lm_id = self.rs.reading()
         self.assertIsInstance(z, np.ndarray)
         self.assertEqual(z.shape, (2,))
@@ -205,7 +201,6 @@ class RangeBearingSensorTest(unittest.TestCase):
         )
 
     def test_plot(self):
-
         # map = LandmarkMap(20)
         # map.plot(block=False)
         pass
@@ -216,7 +211,6 @@ class RangeBearingSensorTest(unittest.TestCase):
 
 class LandMarkTest(unittest.TestCase):
     def test_init(self):
-
         map = LandmarkMap(20)
 
         self.assertEqual(len(map), 20)
@@ -247,7 +241,6 @@ class LandMarkTest(unittest.TestCase):
 
 class DriversTest(unittest.TestCase):
     def test_init(self):
-
         rp = rtb.RandomPath(10)
 
         self.assertIsInstance(str(rp), str)
@@ -267,7 +260,6 @@ class DriversTest(unittest.TestCase):
 
 
 class TestBicycle(unittest.TestCase):
-
     # def test_deriv(self):
     #     xv = np.r_[1, 2, pi/4]
 

@@ -45,7 +45,6 @@ class Stanford(DHRobot):
     """
 
     def __init__(self):
-
         deg = pi / 180
         inch = 0.0254
 
@@ -143,6 +142,5 @@ class Stanford(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     stanford = Stanford()
     print(stanford)

@@ -10,7 +10,6 @@ ArrayLike = Union[list, np.ndarray, tuple, set]
 
 
 def angle_axis(T, Td):
-
     try:
         e = Angle_Axis(T, Td)
     except BaseException:

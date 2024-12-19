@@ -1,15 +1,13 @@
-from typing import Type
 import numpy as np
-from math import sin, cos, atan2, tan, sqrt, pi
+from math import pi
 
 import matplotlib.pyplot as plt
-from matplotlib.patches import Polygon
-import time
 
 from bdsim.components import TransferBlock
 from bdsim.graphics import GraphicsBlock
 
 from roboticstoolbox import mobile
+
 
 # ------------------------------------------------------------------------ #
 class Bicycle(TransferBlock):
@@ -154,6 +152,7 @@ class Unicycle(TransferBlock):
     :seealso: :class:`~roboticstoolbox.mobile.Vehicle.Unicycle` :class:`Bicycle` :class:`DiffSteer`
 
     """
+
     nin = 2
     nout = 1
     inlabels = ("v", "ω")

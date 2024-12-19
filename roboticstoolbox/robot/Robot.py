@@ -1188,7 +1188,11 @@ class Robot(BaseRobot[Link], RobotKinematicsMixin):
             verifymatrix(H, (6, self.n, self.n))
 
         manipulability = self.manipulability(
-            q, J=J, start=start, end=end, axes=axes  # type: ignore
+            q,
+            J=J,
+            start=start,
+            end=end,
+            axes=axes,  # type: ignore
         )
 
         J = J[axes, :]  # type: ignore
@@ -1209,7 +1213,11 @@ class Robot(BaseRobot[Link], RobotKinematicsMixin):
 
     def closest_point(
         self, q: ArrayLike, shape: Shape, inf_dist: float = 1.0, skip: bool = False
-    ) -> Tuple[Union[int, None], Union[NDArray, None], Union[NDArray, None],]:
+    ) -> Tuple[
+        Union[int, None],
+        Union[NDArray, None],
+        Union[NDArray, None],
+    ]:
         """
         Find the closest point between robot and shape
 
@@ -1443,7 +1451,8 @@ class Robot(BaseRobot[Link], RobotKinematicsMixin):
 
                 norm = lpTcp / d
                 norm_h = np.expand_dims(
-                    np.concatenate((norm, [0.0, 0.0, 0.0])), axis=0  # type: ignore
+                    np.concatenate((norm, [0.0, 0.0, 0.0])),
+                    axis=0,  # type: ignore
                 )
 
                 # tool = (self.fkine(q, end=link).inv() * SE3(wTlp)).A[:3, 3]
@@ -1576,7 +1585,8 @@ class Robot(BaseRobot[Link], RobotKinematicsMixin):
         # Create line of sight object
         los_mid = SE3((wTcp + wTtp) / 2)
         los_orientation = rotation_between_vectors(
-            np.array([0.0, 0.0, 1.0]), wTcp - wTtp  # type: ignore
+            np.array([0.0, 0.0, 1.0]),
+            wTcp - wTtp,  # type: ignore
         )
 
         los = Cylinder(
@@ -1592,9 +1602,7 @@ class Robot(BaseRobot[Link], RobotKinematicsMixin):
                 lpTvp = -wTlp + wTvp
 
                 norm = lpTvp / d
-                norm_h = np.expand_dims(
-                    np.concatenate((norm, [0.0, 0.0, 0.0])), axis=0
-                )  # type: ignore
+                norm_h = np.expand_dims(np.concatenate((norm, [0.0, 0.0, 0.0])), axis=0)  # type: ignore
 
                 tool = SE3(
                     (np.linalg.inv(self.fkine(q, end=link).A) @ SE3(wTlp).A)[:3, 3]
@@ -1608,9 +1616,7 @@ class Robot(BaseRobot[Link], RobotKinematicsMixin):
                     Jv = camera.jacob0(camera.q)
                     Jv[:3, :] = self._T[:3, :3] @ Jv[:3, :]
 
-                    Jv *= (
-                        np.linalg.norm(wTvp - shape.T[:3, -1]) / los.length
-                    )  # type: ignore
+                    Jv *= np.linalg.norm(wTvp - shape.T[:3, -1]) / los.length  # type: ignore
 
                     dpc = norm_h @ Jv
                     dpc = np.concatenate(

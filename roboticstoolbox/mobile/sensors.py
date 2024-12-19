@@ -1,10 +1,7 @@
 from abc import ABC
 import numpy as np
-import scipy as sp
 from math import pi, sin, cos
-import matplotlib.pyplot as plt
 from spatialmath import base
-import roboticstoolbox as rtb
 from collections.abc import Iterable
 
 """
@@ -204,6 +201,7 @@ class SensorBase(ABC):
 
 # ======================================================================== #
 
+
 # visibility function, for one id, or return list of visible
 # covar can be 2x2 or (2,)
 # .W property
@@ -221,7 +219,6 @@ class RangeBearingSensor(SensorBase):
         seed=0,
         **kwargs,
     ):
-
         r"""
         Range and bearing angle sensor
 
@@ -759,7 +756,6 @@ class RangeBearingSensor(SensorBase):
 
 
 if __name__ == "__main__":
-
     from roboticstoolbox import Bicycle, LandmarkMap, RangeBearingSensor
     from math import pi
 

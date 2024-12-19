@@ -3,18 +3,14 @@ Python Vehicle
 @Author: Peter Corke, original MATLAB code and Python version
 @Author: Kristian Gibson, initial MATLAB port
 """
+
 from abc import ABC, abstractmethod
-import warnings
-from math import pi, sin, cos, tan, atan2
+from math import atan2
 import numpy as np
-from scipy import integrate, linalg, interpolate
 
 import matplotlib.pyplot as plt
-from matplotlib import patches
-import matplotlib.transforms as mtransforms
 
-from spatialmath import SE2, base
-import roboticstoolbox as rtb
+from spatialmath import base
 
 
 class VehicleDriverBase(ABC):
@@ -66,7 +62,6 @@ class VehicleDriverBase(ABC):
 
     @vehicle.setter
     def vehicle(self, v):
-
         self._veh = v
 
     def __repr__(self):
@@ -252,7 +247,6 @@ class RandomPath(VehicleDriverBase):
     ## private method, invoked from demand() to compute a new waypoint
 
     def _new_goal(self):
-
         # choose a uniform random goal within inner 80% of driving area
         while True:
             r = self._random.uniform(0.1, 0.9)
@@ -296,5 +290,4 @@ class PurePursuit(VehicleDriverBase):
 # ========================================================================= #
 
 if __name__ == "__main__":
-
-    import unittest
+    pass

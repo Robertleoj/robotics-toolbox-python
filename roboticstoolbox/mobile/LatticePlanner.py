@@ -2,9 +2,7 @@ from pgraph import DGraph, DVertex, Edge
 import numpy as np
 from spatialmath import SE2
 import matplotlib.pyplot as plt
-import itertools
 from roboticstoolbox.mobile.PlannerBase import PlannerBase
-from roboticstoolbox.mobile.OccGrid import BinaryOccupancyGrid
 from collections import namedtuple
 
 
@@ -135,7 +133,6 @@ class LatticePlanner(PlannerBase):
     """
 
     def __init__(self, costs=None, root=(0, 0, 0), **kwargs):
-
         global arcs
 
         super().__init__(ndims=3, **kwargs)
@@ -191,7 +188,6 @@ class LatticePlanner(PlannerBase):
 
         iteration = 0
         while True:
-
             newfrontier = []
             for vertex in frontier:
                 if verbose:
@@ -310,7 +306,6 @@ class LatticePlanner(PlannerBase):
         super().plot(**kwargs)
 
         if kwargs.get("configspace", False):
-
             # 3D plot
             for k, vertex in enumerate(self.graph):
                 # for every node
@@ -359,7 +354,6 @@ class LatticePlanner(PlannerBase):
 
 
 if __name__ == "__main__":
-
     lattice = LatticePlanner()
     lattice.plan(iterations=6)
     path = lattice.query(start=(0, 0, np.pi / 2), goal=(1, 1, 0))

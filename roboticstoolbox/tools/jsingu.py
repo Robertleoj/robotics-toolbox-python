@@ -1,5 +1,4 @@
 import numpy as np
-from scipy.linalg import lu
 
 
 # def jsingu(J):
@@ -15,8 +14,8 @@ from scipy.linalg import lu
 #                 ', '.join(
 #                     [str(i) for i in range(j) if all(U[:, j] == U[:, i])]))
 
-def jsingu(J):
 
+def jsingu(J):
     indep_columns = np.empty((J.shape[0], 0))
     rank = 0
     for j in range(J.shape[1]):
@@ -37,10 +36,10 @@ def jsingu(J):
                     elif i > 0:
                         s += " + "
                     s += f"{abs(ci):.3g} column_{i}"
-            print(s) 
+            print(s)
 
 
-if __name__ == "__main__":   # pragma nocover
+if __name__ == "__main__":  # pragma nocover
     import roboticstoolbox as rtb
 
     # robot = rtb.models.DH.Puma560()

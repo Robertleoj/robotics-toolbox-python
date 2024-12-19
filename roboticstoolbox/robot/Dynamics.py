@@ -10,17 +10,16 @@ so must be subclassed by ``DHRobot`` class.
 
 :todo: perhaps these should be abstract properties, methods of this calss
 """
+
 from collections import namedtuple
 from typing import Any, Callable, Dict, Union
 import numpy as np
-from spatialmath.base import getvector, verifymatrix, isscalar, getmatrix, t2r, rot2jac
+from spatialmath.base import getvector, verifymatrix, isscalar, getmatrix
 from scipy import integrate, interpolate
-from spatialmath.base import symbolic as sym
 from roboticstoolbox import rtb_get_param
 from roboticstoolbox.robot.RobotProto import RobotProto
 
 from roboticstoolbox.tools.types import ArrayLike, NDArray
-from typing_extensions import Self
 import roboticstoolbox as rtb
 
 from ansitable import ANSITable, Column
@@ -28,7 +27,6 @@ import warnings
 
 
 class DynamicsMixin:
-
     # --------------------------------------------------------------------- #
     def dynamics(self: RobotProto):
         """
@@ -339,7 +337,6 @@ class DynamicsMixin:
             _printProgressBar(0, prefix="Progress:", suffix="complete", length=60)
 
         while integrator.status == "running":
-
             # step the integrator, calls _fdyn multiple times
             integrator.step()
 
@@ -677,7 +674,6 @@ class DynamicsMixin:
 
         tf = []
         for j, link in enumerate(self.links):
-
             # compute inertia for this joint
             zero = np.zeros((self.n))
             qdd = np.zeros((self.n))
@@ -1154,7 +1150,6 @@ class DynamicsMixin:
             Ct = np.zeros((q.shape[0], 6, 6))
 
             for k, (qk, qdk) in enumerate(zip(q, qd)):
-
                 if Ji is None:
                     Ja = self.jacob0_analytical(q[0, :], representation)
                     if pinv:
@@ -1374,7 +1369,6 @@ class DynamicsMixin:
         xdd = np.zeros((q.shape[0], self.n))
 
         for k, (qk, xdk, wk) in enumerate(zip(q, xd, w)):
-
             Ja = self.jacob0_analytical(qk, representation=representation)
             if pinv:
                 Ji = np.linalg.pinv(Ja)
@@ -1619,7 +1613,6 @@ class DynamicsMixin:
 def _printProgressBar(
     fraction, prefix="", suffix="", decimals=1, length=50, fill="█", printEnd="\r"
 ):
-
     percent = ("{0:." + str(decimals) + "f}").format(fraction * 100)
     filledLength = int(length * fraction)
     bar = fill * filledLength + "-" * (length - filledLength)
@@ -1627,7 +1620,6 @@ def _printProgressBar(
 
 
 if __name__ == "__main__":  # pragma nocover
-
     import roboticstoolbox as rtb
 
     puma = rtb.models.DH.Puma560()

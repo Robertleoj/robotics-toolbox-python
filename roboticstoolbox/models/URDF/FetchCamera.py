@@ -30,7 +30,6 @@ class FetchCamera(Robot):
     """
 
     def __init__(self):
-
         links, name, urdf_string, urdf_filepath = self.URDF_read(
             "fetch_description/robots/fetch_camera.urdf"
         )
@@ -55,7 +54,6 @@ class FetchCamera(Robot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = FetchCamera()
     print(robot)
 

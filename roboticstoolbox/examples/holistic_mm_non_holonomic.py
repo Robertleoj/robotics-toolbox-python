@@ -13,7 +13,6 @@ import math
 
 
 def step_robot(r: rtb.ERobot, Tep):
-
     wTe = r.fkine(r.q)
 
     eTep = np.linalg.inv(wTe) @ Tep
@@ -112,7 +111,6 @@ env.step()
 
 
 while not arrived:
-
     arrived, frankie.qd = step_robot(frankie, wTep.A)
     env.step(dt)
 

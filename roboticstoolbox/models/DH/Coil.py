@@ -47,7 +47,6 @@ class Coil(DHRobot):
     """  # noqa
 
     def __init__(self, N=10, symbolic=False):
-
         if symbolic:
             import spatialmath.base.symbolic as sym
 
@@ -73,7 +72,6 @@ class Coil(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     coil = Coil(N=10, symbolic=False)
     print(coil)
 

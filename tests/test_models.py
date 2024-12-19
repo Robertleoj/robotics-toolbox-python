@@ -5,7 +5,6 @@
 
 import roboticstoolbox as rp
 import unittest
-import numpy.testing as nt
 
 
 class TestModels(unittest.TestCase):

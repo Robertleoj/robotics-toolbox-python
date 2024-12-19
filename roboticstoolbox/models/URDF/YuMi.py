@@ -33,7 +33,6 @@ class YuMi(Robot):
     """
 
     def __init__(self):
-
         links, name, urdf_string, urdf_filepath = self.URDF_read(
             "yumi_description/urdf/yumi.urdf"
         )
@@ -105,6 +104,5 @@ class YuMi(Robot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = YuMi()
     print(robot)

@@ -5,7 +5,9 @@ import unittest
 try:
     from bdsim import BDSim
 except ModuleNotFoundError:
-    raise unittest.SkipTest("bdsim not found, skipping all tests in test_blocks.py") from None
+    raise unittest.SkipTest(
+        "bdsim not found, skipping all tests in test_blocks.py"
+    ) from None
 
 from spatialmath import SE3
 from spatialmath.base import tr2x
@@ -15,6 +17,7 @@ import numpy.testing as nt
 import roboticstoolbox as rtb
 from roboticstoolbox.blocks import *
 from roboticstoolbox.blocks.quad_model import quadrotor
+
 
 class State:
     T = 5
@@ -27,9 +30,9 @@ class State:
     def __init__(self):
         self.options = self.Opt()
 
+
 class RobotBlockTest(unittest.TestCase):
     def test_fkine(self):
-
         robot = rtb.models.ETS.Panda()
         q = robot.configs["qr"]
         T = robot.fkine(q)
@@ -38,7 +41,6 @@ class RobotBlockTest(unittest.TestCase):
         nt.assert_array_almost_equal(block.T_output(q)[0], T)
 
     def test_ikine(self):
-
         robot = rtb.models.ETS.Panda()
         q = robot.configs["qr"]
         T = robot.fkine(q)
@@ -51,7 +53,6 @@ class RobotBlockTest(unittest.TestCase):
         nt.assert_array_almost_equal(robot.fkine(q_ik), T)  # test it's FK is correct
 
     def test_jacobian(self):
-
         robot = rtb.models.ETS.Panda()
         q = robot.configs["qr"]
 
@@ -68,7 +69,6 @@ class RobotBlockTest(unittest.TestCase):
         nt.assert_array_almost_equal(block.T_output(q)[0], np.linalg.pinv(J))
 
     def test_gravload(self):
-
         robot = rtb.models.DH.Puma560()
         q = robot.configs["qn"]
 
@@ -147,7 +147,6 @@ class RobotBlockTest(unittest.TestCase):
 
     @unittest.skip("cant test bdsim plot blocks")
     def test_armplot(self):
-
         robot = rtb.models.ETS.Panda()
         q = robot.configs["qr"]
 
@@ -156,7 +155,6 @@ class RobotBlockTest(unittest.TestCase):
 
 class SpatialBlockTest(unittest.TestCase):
     def test_delta(self):
-
         block = Tr2Delta()
 
         T1 = SE3()
@@ -169,7 +167,6 @@ class SpatialBlockTest(unittest.TestCase):
         nt.assert_array_almost_equal(block.T_output(delta)[0], SE3.Delta(delta))
 
     def test_tr2t(self):
-
         T = SE3.Trans(1, 2, 3) * SE3.RPY(0.3, 0.4, 0.5)
 
         block = TR2T()
@@ -180,7 +177,6 @@ class SpatialBlockTest(unittest.TestCase):
         self.assertAlmostEqual(out[2], 3)
 
     def test_point2tr(self):
-
         T = SE3.Trans(1, 2, 3) * SE3.RPY(0.3, 0.4, 0.5)
 
         block = Point2Tr(T)
@@ -203,7 +199,6 @@ class SpatialBlockTest(unittest.TestCase):
         nt.assert_array_almost_equal(block.T_output(t=5)[0], q2)
 
     def test_ctraj(self):
-
         T1 = SE3.Trans(1, 2, 3) * SE3.RPY(0.3, 0.4, 0.5)
         T2 = SE3.Trans(-1, -2, -3) * SE3.RPY(-0.3, -0.4, -0.5)
 
@@ -216,7 +211,6 @@ class SpatialBlockTest(unittest.TestCase):
         nt.assert_array_almost_equal(block.T_output(t=5)[0], T2)
 
     def test_trapezoidal(self):
-
         block = Trapezoidal(2, 3, T=5)
 
         s = State()
@@ -231,7 +225,6 @@ class SpatialBlockTest(unittest.TestCase):
         nt.assert_array_almost_equal(out[1], 0)
 
     def test_circlepath(self):
-
         block = CirclePath(
             radius=2, centre=[1, 2, 3], frequency=0.25, phase=0, unit="rps"
         )
@@ -241,7 +234,6 @@ class SpatialBlockTest(unittest.TestCase):
         nt.assert_array_almost_equal(block.T_output(t=2)[0], (1 - 2, 2, 3))
 
     def test_traj(self):
-
         block = Traj([1, 2], [3, 4], time=True, traj="trapezoidal", T=5)
         s = State()
         block.start(s)
@@ -270,7 +262,6 @@ class SpatialBlockTest(unittest.TestCase):
 
 class MobileBlockTest(unittest.TestCase):
     def test_bicycle(self):
-
         x = [2, 3, np.pi / 2]
         block = Bicycle(x0=x, L=3)
 
@@ -279,11 +270,11 @@ class MobileBlockTest(unittest.TestCase):
 
         nt.assert_array_almost_equal(block.T_output(10, 0.3, x=x, t=0)[0], x)
         nt.assert_array_almost_equal(
-            block.T_deriv(10, 0.3, x=x), [10 * np.cos(x[2]), 10 * np.sin(x[2]), 10 / 3 * np.tan(0.3)]
+            block.T_deriv(10, 0.3, x=x),
+            [10 * np.cos(x[2]), 10 * np.sin(x[2]), 10 / 3 * np.tan(0.3)],
         )
 
     def test_unicycle(self):
-
         x = [2, 3, np.pi / 2]
         block = Unicycle(x0=x, W=3)
 
@@ -296,7 +287,6 @@ class MobileBlockTest(unittest.TestCase):
         )
 
     def test_diffsteer(self):
-
         x = [2, 3, np.pi / 2]
         block = DiffSteer(x0=x, W=3, R=1 / np.pi)
 
@@ -308,7 +298,6 @@ class MobileBlockTest(unittest.TestCase):
 
     @unittest.skip("cant test bdsim plot blocks")
     def test_vehicleplot(self):
-
         bike = Bicycle()
         block = VehiclePlot()
 
@@ -319,7 +308,6 @@ class MobileBlockTest(unittest.TestCase):
 
 class MultirotorBlockTest(unittest.TestCase):
     def test_multirotor(self):
-
         x = np.r_[[1, 2, 3, 0, 0, 0], np.zeros((6,))]
         block = MultiRotor(model=quadrotor)
 
@@ -328,12 +316,11 @@ class MultirotorBlockTest(unittest.TestCase):
         )[0]
         self.assertIsInstance(out, dict)
 
-        out = block.T_deriv(100*np.r_[1, 1, 1, 1], x=x)
+        out = block.T_deriv(100 * np.r_[1, 1, 1, 1], x=x)
         self.assertIsInstance(out, np.ndarray)
         self.assertEqual(out.shape, (12,))
 
     def test_multirotormixer(self):
-
         block = MultiRotorMixer(model=quadrotor)
         nt.assert_array_almost_equal(
             block.T_output(0, 0, 0, -20, t=0)[0],
@@ -342,7 +329,6 @@ class MultirotorBlockTest(unittest.TestCase):
 
     @unittest.skip("cant test bdsim plot blocks")
     def test_multirotorplot(self):
-
         block = MultiRotorPlot(model=quadrotor)
 
         class State:
@@ -354,7 +340,6 @@ class MultirotorBlockTest(unittest.TestCase):
         block.step(state=s)
 
     def test_quadrotor(self):
-
         block = MultiRotor(quadrotor)
         print(block.D)
         z = np.r_[0, 0, 0, 0]
@@ -400,7 +385,6 @@ class MultirotorBlockTest(unittest.TestCase):
 
     @unittest.skip("cant test bdsim plot blocks")
     def test_quadrotorplot(self):
-
         block = MultiRotor(quadrotor)
         u = [100 * np.r_[1, -1, 1, -1]]
         x = block.getstate0()
@@ -413,5 +397,4 @@ class MultirotorBlockTest(unittest.TestCase):
 
 # ---------------------------------------------------------------------------------------#
 if __name__ == "__main__":
-
     unittest.main()

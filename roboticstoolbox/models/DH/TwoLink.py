@@ -3,6 +3,7 @@
 """
 
 from roboticstoolbox import DHRobot, RevoluteDH
+
 # from math import pi
 from spatialmath import SE3
 import numpy as np
@@ -57,7 +58,6 @@ class TwoLink(DHRobot):
     """
 
     def __init__(self, symbolic=False):
-
         if symbolic:
             import spatialmath.base.symbolic as sym
 
@@ -104,6 +104,5 @@ class TwoLink(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = TwoLink(symbolic=True)
     print(robot)

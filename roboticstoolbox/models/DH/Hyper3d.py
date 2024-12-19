@@ -47,7 +47,6 @@ class Hyper3d(DHRobot):
     """  # noqa
 
     def __init__(self, N=10, a=None, symbolic=False):
-
         if symbolic:
             import spatialmath.base.symbolic as sym
 
@@ -77,7 +76,6 @@ class Hyper3d(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     hyper = Hyper3d(N=10, symbolic=False)
     print(hyper)
 

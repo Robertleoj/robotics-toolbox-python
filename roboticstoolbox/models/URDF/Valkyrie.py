@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import numpy as np
-from roboticstoolbox.robot.Robot import Robot, Link
+from roboticstoolbox.robot.Robot import Robot
 
 
 class Valkyrie(Robot):
@@ -30,8 +30,7 @@ class Valkyrie(Robot):
     """
 
     def __init__(self, variant="A"):
-
-        if not variant in "ABCD":
+        if variant not in "ABCD":
             raise ValueError("variant must be in the range A-D")
 
         links, name, urdf_string, urdf_filepath = self.URDF_read(
@@ -78,7 +77,6 @@ class Valkyrie(Robot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = Valkyrie("B")
     print(robot)
     env = robot.plot(np.zeros((robot.n,)))

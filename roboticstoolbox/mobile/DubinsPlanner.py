@@ -232,7 +232,7 @@ def generate_local_course(total_length, lengths, mode, max_curvature, step_size)
 
     ll = 0.0
 
-    for (m, l, i) in zip(mode, lengths, range(len(mode))):
+    for m, l, i in zip(mode, lengths, range(len(mode))):
         if l > 0.0:
             d = step_size
         else:
@@ -334,6 +334,7 @@ def path_planning(start, goal, curvature, step_size=0.1):
 
 # ====================== RTB wrapper ============================= #
 
+
 # Copyright (c) 2022 Peter Corke: https://github.com/petercorke/robotics-toolbox-python
 # Released under the MIT license: https://github.com/AtsushiSakai/PythonRobotics/blob/master/LICENSE
 class DubinsPlanner(PlannerBase):
@@ -381,7 +382,6 @@ class DubinsPlanner(PlannerBase):
     """
 
     def __init__(self, curvature=1, stepsize=0.1, **kwargs):
-
         super().__init__(ndims=3, **kwargs)
         self._curvature = curvature
         self._stepsize = stepsize

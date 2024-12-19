@@ -170,7 +170,6 @@ qlim  =      -2.8 to      2.8""",  # noqa
         self.assertIs(l0._robot, r)
 
     def test_copy(self):
-
         l0 = rp.RevoluteMDH()
         r = rp.DHRobot([l0])
         l1 = l0.copy()
@@ -204,5 +203,4 @@ qlim  =      -2.8 to      2.8""",  # noqa
 
 
 if __name__ == "__main__":
-
     unittest.main()

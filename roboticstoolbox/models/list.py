@@ -1,4 +1,3 @@
-from typing import Type
 from roboticstoolbox.robot.Robot import Robot
 from roboticstoolbox.tools import rtb_get_param
 from roboticstoolbox.robot.ERobot import ERobot2
@@ -45,6 +44,7 @@ def list(keywords=None, dof=None, type=None, border="thin"):
     unicode = rtb_get_param("unicode")
     if not unicode:
         border = "ascii"
+
     def make_table(border=None):
         table = ANSITable(
             Column("class", headalign="^", colalign="<"),
@@ -112,7 +112,7 @@ def list(keywords=None, dof=None, type=None, border="thin"):
 
 
 if __name__ == "__main__":  # pragma nocover
-    list(border='ascii')
-    list(keywords=("dynamics",), border='thin')
+    list(border="ascii")
+    list(keywords=("dynamics",), border="thin")
     list(dof=6)
     list(keywords=("dynamics",), dof=6)

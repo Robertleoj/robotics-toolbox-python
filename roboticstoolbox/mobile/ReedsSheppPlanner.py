@@ -40,7 +40,7 @@ def plot_arrow(x, y, yaw, length=1.0, width=0.5, fc="r", ec="k"):
     """
 
     if not isinstance(x, float):
-        for (ix, iy, iyaw) in zip(x, y, yaw):
+        for ix, iy, iyaw in zip(x, y, yaw):
             plot_arrow(ix, iy, iyaw)
     else:
         plt.arrow(
@@ -316,7 +316,7 @@ def generate_local_course(total_length, lengths, mode, max_curvature, step_size)
 
     ll = 0.0
 
-    for (m, l, i) in zip(mode, lengths, range(len(mode))):
+    for m, l, i in zip(mode, lengths, range(len(mode))):
         if l > 0.0:
             d = step_size
         else:
@@ -389,7 +389,6 @@ def calc_paths(sx, sy, syaw, gx, gy, gyaw, maxc, step_size):
 
 
 def reeds_shepp_path_planning(start, goal, maxc, step_size):
-
     s_x, s_y, s_yaw = start
     g_x, g_y, g_yaw = goal
 
@@ -411,6 +410,7 @@ def reeds_shepp_path_planning(start, goal, maxc, step_size):
 
 
 # ====================== RTB wrapper ============================= #
+
 
 # Copyright (c) 2022 Peter Corke: https://github.com/petercorke/robotics-toolbox-python
 # Released under the MIT license: https://github.com/AtsushiSakai/PythonRobotics/blob/master/LICENSE

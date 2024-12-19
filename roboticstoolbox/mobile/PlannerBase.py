@@ -15,7 +15,6 @@ from spatialmath.base.graphics import axes_logic, plotvol2, axes_get_scale
 
 # from spatialmath import SE2, SE3
 from matplotlib import cm
-from abc import ABC
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import copy
@@ -86,7 +85,6 @@ class PlannerBase(ABC):
         seed=None,
         **unused,
     ):
-
         self._occgrid = None
         if ndims is None:
             raise ValueError("ndims must be specified")
@@ -751,7 +749,6 @@ class PlannerBase(ABC):
             if start is not None:
                 ax.plot(start[0], start[1], start[2], label="start", **start_marker)
             if goal is not None:
-
                 if path is not None and unwrap:
                     theta = theta[-1]
                 else:

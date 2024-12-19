@@ -39,7 +39,6 @@ class AL5D(DHRobot):
     """  # noqa
 
     def __init__(self, symbolic=False):
-
         if symbolic:
             import spatialmath.base.symbolic as sym
 
@@ -116,7 +115,6 @@ class AL5D(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     al5d = AL5D(symbolic=False)
     print(al5d)
     # print(al5d.dyntable())

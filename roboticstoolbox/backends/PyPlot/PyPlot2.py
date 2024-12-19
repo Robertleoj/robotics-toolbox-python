@@ -34,7 +34,6 @@ except ImportError:  # pragma nocover
 
 class PyPlot2(Connector):
     def __init__(self):
-
         super(PyPlot2, self).__init__()
         self.robots = []
         self.ellipses = []
@@ -217,7 +216,6 @@ class PyPlot2(Connector):
     #
 
     def _step_robots(self, dt):
-
         for rpl in self.robots:
             robot = rpl.robot
 
@@ -225,7 +223,6 @@ class PyPlot2(Connector):
                 pass  # pragma: no cover
 
             elif robot.control_type == "v":
-
                 for i in range(robot.n):
                     robot.q[i] += robot.qd[i] * (dt / 1000)
 
@@ -242,12 +239,10 @@ class PyPlot2(Connector):
         pass
 
     def _draw_robots(self):
-
         for i in range(len(self.robots)):
             self.robots[i].draw()
 
     def _draw_ellipses(self):
-
         for i in range(len(self.ellipses)):
             self.ellipses[i].draw2()
 

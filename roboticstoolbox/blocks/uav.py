@@ -1,8 +1,7 @@
 import numpy as np
-from math import sin, cos, atan2, tan, sqrt, pi
+from math import sin, cos, atan2, sqrt, pi
 
 import matplotlib.pyplot as plt
-import time
 
 from bdsim.components import TransferBlock, FunctionBlock
 from bdsim.graphics import GraphicsBlock
@@ -38,9 +37,9 @@ class MultiRotor(TransferBlock):
     vehicle state is a dict containing the following items:
 
         - ``x`` pose in the world frame as :math:`[x, y, z, \theta_Y, \theta_P, \theta_R]`
-        - ``trans`` position and velocity in the world frame as 
+        - ``trans`` position and velocity in the world frame as
           :math:`[x, y, z, \dot{x}, \dot{y}, \dot{z}]`
-        - ``rot`` orientation and angular rate in the world frame as 
+        - ``rot`` orientation and angular rate in the world frame as
           :math:`[\theta_Y, \theta_P, \theta_R, \dot{\theta_Y}, \dot{\theta_P}, \dot{\theta_R}]`
         - ``vb`` translational velocity in the body frame as
           :math:`[\dot{x}, \dot{y}, \dot{z}]`
@@ -48,7 +47,7 @@ class MultiRotor(TransferBlock):
            :math:`[\dot{\theta_Y}, \dot{\theta_P}, \dot{\theta_R}]`
         - ``a1s`` longitudinal flapping angles (radians)
         - ``b1s`` lateral flapping angles (radians)
-        - ``X`` full state vector as 
+        - ``X`` full state vector as
           :math:`[x, y, z, \theta_Y, \theta_P, \theta_R, \dot{x}, \dot{y}, \dot{z}, \dot{\theta_Y}, \dot{\theta_P}, \dot{\theta_R}]`
 
     The dynamic model is a dict with the following key/value pairs.
@@ -219,7 +218,6 @@ class MultiRotor(TransferBlock):
         self.b1s = np.zeros((self.nrotors,))
 
     def output(self, t, inports, x):
-
         model = self.model
 
         # compute output vector as a function of state vector
@@ -270,8 +268,10 @@ class MultiRotor(TransferBlock):
         out["x"] = x[0:6]
         out["trans"] = np.r_[x[:3], vd]
         out["rot"] = np.r_[x[3:6], rpyd]
-        out["vb"] = np.linalg.inv(R) @ x[6:9]   # translational velocity mapped to body frame
-        out["w"] = iW @ x[9:12]                 # RPY rates mapped to body frame
+        out["vb"] = (
+            np.linalg.inv(R) @ x[6:9]
+        )  # translational velocity mapped to body frame
+        out["w"] = iW @ x[9:12]  # RPY rates mapped to body frame
 
         out["a1s"] = self.a1s
         out["b1s"] = self.b1s
@@ -284,7 +284,6 @@ class MultiRotor(TransferBlock):
         return [out]
 
     def deriv(self, t, inports, x):
-
         model = self.model
 
         # Body-fixed frame references
@@ -368,7 +367,6 @@ class MultiRotor(TransferBlock):
         b1s = self.b1s
 
         for i in range(0, self.nrotors):  # for each rotor
-
             # Relative motion
             Vr = np.cross(o, self.D[:, i]) + v
             mu = sqrt(np.sum(Vr[0:2] ** 2)) / (
@@ -836,9 +834,7 @@ class MultiRotorPlot(GraphicsBlock):
         for i in range(0, self.nrotors):
             hub[:, i] = F @ (z + R @ self.D[:, i])  # points in the inertial frame
 
-            q = (
-                self.flapscale
-            )  # Flapping angle scaling for output display - makes it easier to see what flapping is occurring
+            q = self.flapscale  # Flapping angle scaling for output display - makes it easier to see what flapping is occurring
             # Rotor -> Plot frame
             Rr = np.array(
                 [
@@ -889,7 +885,6 @@ class MultiRotorPlot(GraphicsBlock):
 
 
 if __name__ == "__main__":
-
     from quad_model import quadrotor
 
     # m = MultiRotorMixer(model=quadrotor)

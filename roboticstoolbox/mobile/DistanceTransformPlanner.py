@@ -2,11 +2,9 @@
 @Author: Peter Corke, original MATLAB code and Python version
 @Author: Kristian Gibson, initial MATLAB port
 """
-from numpy import disp
-from scipy import integrate
+
 from spatialmath.base.transforms2d import *
 from spatialmath.base.vectors import *
-from spatialmath.pose2d import SE2
 from spatialmath import base
 from scipy.ndimage import *
 import matplotlib.pyplot as plt
@@ -67,7 +65,6 @@ class DistanceTransformPlanner(PlannerBase):
     """
 
     def __init__(self, occgrid=None, metric="euclidean", **kwargs):
-
         super().__init__(occgrid=occgrid, ndims=2, **kwargs)
         self._metric = metric
         self._distancemap = None
@@ -221,7 +218,11 @@ class DistanceTransformPlanner(PlannerBase):
         distance = self._distancemap
         X, Y = np.meshgrid(np.arange(distance.shape[1]), np.arange(distance.shape[0]))
         surf = ax.plot_surface(
-            X, Y, distance, linewidth=1, antialiased=False  # cmap='gray',
+            X,
+            Y,
+            distance,
+            linewidth=1,
+            antialiased=False,  # cmap='gray',
         )
 
         if path is not None:
@@ -345,7 +346,6 @@ def distancexform(occgrid, goal, metric="cityblock", animate=False, summary=Fals
 
 
 def grassfire_step(G, D):
-
     # pad with inf
     H = np.pad(G, max(D.shape) // 2, "constant", constant_values=np.inf)
     rows, columns = G.shape

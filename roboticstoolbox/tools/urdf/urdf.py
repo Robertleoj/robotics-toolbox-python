@@ -297,7 +297,6 @@ class Mesh(URDFType):
 
     @filename.setter
     def filename(self, value):
-
         global _base_path
 
         if value.startswith("package://"):
@@ -1954,8 +1953,9 @@ class URDF(URDFType):
             for joint in t.joints:
                 if joint.name not in self._joint_map:
                     raise ValueError(
-                        "Transmission {} has invalid joint name "
-                        "{}".format(t.name, joint.name)
+                        "Transmission {} has invalid joint name " "{}".format(
+                            t.name, joint.name
+                        )
                     )
 
     @classmethod

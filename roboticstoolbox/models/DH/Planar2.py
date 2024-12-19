@@ -36,7 +36,6 @@ class Planar2(DHRobot):
     """
 
     def __init__(self, symbolic=False):
-
         if symbolic:
             import spatialmath.base.symbolic as sym
 
@@ -65,6 +64,5 @@ class Planar2(DHRobot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = Planar2()
     print(robot)

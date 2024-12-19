@@ -31,7 +31,6 @@ class rx200(Robot):
     """
 
     def __init__(self):
-
         links, name, urdf_string, urdf_filepath = self.URDF_read(
             "interbotix_descriptions/urdf/rx200.urdf.xacro"
         )
@@ -52,6 +51,5 @@ class rx200(Robot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = rx200()
     print(robot)

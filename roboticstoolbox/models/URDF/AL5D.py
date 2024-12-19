@@ -2,7 +2,6 @@
 
 import numpy as np
 from roboticstoolbox.robot.Robot import Robot
-from math import pi
 
 
 class AL5D(Robot):
@@ -28,7 +27,6 @@ class AL5D(Robot):
     """
 
     def __init__(self):
-
         links, name, urdf_string, urdf_filepath = self.URDF_read(
             "al5d_description/urdf/al5d_robot.urdf"
         )
@@ -50,6 +48,5 @@ class AL5D(Robot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = AL5D()
     print(robot)

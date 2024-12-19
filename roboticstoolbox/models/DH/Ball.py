@@ -50,7 +50,6 @@ class Ball(DHRobot):
     """
 
     def __init__(self, N=10):
-
         links = []
         q1 = []
 
@@ -83,6 +82,5 @@ def _fract(i):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     ball = Ball()
     print(ball)

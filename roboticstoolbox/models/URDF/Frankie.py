@@ -31,7 +31,6 @@ class Frankie(Robot):
     """
 
     def __init__(self):
-
         links, name, urdf_string, urdf_filepath = self.URDF_read(
             "franka_description/robots/frankie_arm_hand.urdf.xacro"
         )
@@ -59,7 +58,6 @@ class Frankie(Robot):
 
 
 if __name__ == "__main__":  # pragma nocover
-
     robot = Frankie()
     print(robot)
 

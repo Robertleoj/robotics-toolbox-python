@@ -72,12 +72,7 @@ class _QuinticPolynomial:
         return xt
 
     def calc_second_derivative(self, t):
-        xt = (
-            2 * self.a2
-            + 6 * self.a3 * t
-            + 12 * self.a4 * t**2
-            + 20 * self.a5 * t**3
-        )
+        xt = 2 * self.a2 + 6 * self.a3 * t + 12 * self.a4 * t**2 + 20 * self.a5 * t**3
 
         return xt
 
@@ -172,6 +167,7 @@ def quintic_polynomials_planner(
 
 # ====================== RTB wrapper ============================= #
 
+
 # Copyright (c) 2022 Peter Corke: https://github.com/petercorke/robotics-toolbox-python
 # Released under the MIT license: https://github.com/AtsushiSakai/PythonRobotics/blob/master/LICENSE
 class QuinticPolyPlanner(PlannerBase):
@@ -257,7 +253,6 @@ class QuinticPolyPlanner(PlannerBase):
         min_t=5,
         max_t=100,
     ):
-
         super().__init__(ndims=3)
         self.dt = dt
         self.start_vel = start_vel
@@ -322,8 +317,6 @@ class QuinticPolyPlanner(PlannerBase):
 
 
 if __name__ == "__main__":
-    from math import pi
-
     start = (10, 10, np.deg2rad(10.0))
     goal = (30, -10, np.deg2rad(20.0))
 
